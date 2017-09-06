@@ -4,18 +4,22 @@
  * and open the template in the editor.
  */
 package javaapplication1;
-
+import java.util.Map;
 /**
  *
  * @author jsf3
  */
 public class JavaApplication1 {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main (String[] args) {
+        Map<String, String> env = System.getenv();
+        for (String envName : env.keySet()) {
+            //System.out.format("%s=%s%n",
+                           //   envName,
+                             // env.get(envName));
+            
+        }
+        System.out.print("i did it");
     }
     
 }
