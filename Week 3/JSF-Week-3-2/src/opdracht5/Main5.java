@@ -12,6 +12,7 @@ public class Main5 {
 
         //===ProcessBuilder way===
 
+        /*
         // args[0] is the command
         ProcessBuilder pb = new ProcessBuilder(args[0]);
         Process proc = pb.start();
@@ -23,33 +24,36 @@ public class Main5 {
         }
 
         proc.destroy();
+        */
 
         //===Exec way===
 
         try {
             Process p = Runtime.getRuntime().exec(args[0]);
             Thread.sleep(1000);
+            /*
             p.destroy();
             int exitVal = p.waitFor();
             System.out.println(exitVal);
+            */
+
+            // Obtain the input stream
+            InputStream is = p.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr);
+
+            // Read what is returned by the command
+            String line;
+            while ( (line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            br.close();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        /*
-        //Other random code from the sheet that does things
-        // Obtain the input stream
-        InputStream is = proc.getInputStream();
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
 
-        // Read what is returned by the command
-        String line;
-        while ( (line = br.readLine()) != null) {
-            System.out.println(line);
-        }
-
-        br.close();
-        */
     }
 }
