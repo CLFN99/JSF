@@ -29,6 +29,7 @@ public class KochManager implements Observer {
         for (Edge e:edges) {
             application.drawEdge((Edge) arg);
         }
+        application.setTextNrEdges(String.valueOf(koch.getNrOfEdges()));
     }
 
 
