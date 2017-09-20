@@ -1,6 +1,7 @@
 package sample;
 
 import calculate.KochFractal;
+import calculate.KochManager;
 import calculate.kochObserver;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -26,9 +27,10 @@ public class Main extends Application {
         launch(args);
         kochObserver ko = new kochObserver();
         KochFractal kf = new KochFractal();
+
         kf.addObserver(ko);
 
-        kf.setLevel(1);
+        kf.setLevel(2);
         kf.generateLeftEdge();
         kf.generateBottomEdge();
         kf.generateRightEdge();
