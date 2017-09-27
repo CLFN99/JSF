@@ -1,6 +1,8 @@
 package calculate;
 
 import jsf31kochfractalfx.JSF31KochFractalFX;
+import threading.KochRunnable;
+import threading.KochType;
 import timeutil.TimeStamp;
 
 import java.util.*;
@@ -28,6 +30,15 @@ public class KochManager implements Observer {
         application.setTextNrEdges(String.valueOf(koch.getNrOfEdges()));
     }
 
+    public synchronized void addEdge(Edge e) {
+        edges.add(e);
+    }
+
+    public synchronized void mergeEdgeList (List<Edge> e) {
+        System.out.println("Pre merge: " + edges.size());
+        edges.addAll(e);
+        System.out.println("Post merge: " + edges.size());
+    }
 
     public void changeLevel(int nxt) {
         koch.setLevel(nxt);
@@ -35,25 +46,19 @@ public class KochManager implements Observer {
         edges.clear();
 
         time.setBegin("Edges are being generated..");
-        Thread t1 = new Thread(() -> {
-            synchronized (koch){
-                koch.generateLeftEdge();
-            }
-        });
-        Thread t2 = new Thread(() -> {
-            synchronized (koch){
-                koch.generateBottomEdge();
-            }
-        });
-        Thread t3 = new Thread(() -> {
-            synchronized (koch){
-                koch.generateRightEdge();
-            }
-        });
+        Thread edge1 = new Thread(new KochRunnable(KochType.LEFT, this)) {
 
-        t1.start();
-        t2.start();
-        t3.start();
+        };
+        Thread edge2 = new Thread(new KochRunnable(KochType.RIGHT, this)) {
+
+        };
+        Thread edge3 = new Thread(new KochRunnable(KochType.BOTTOM, this)) {
+
+        };
+
+        edge1.start();
+        edge2.start();
+        edge3.start();
 
         time.setEnd("Fractal generation done!");
 
@@ -71,7 +76,7 @@ public class KochManager implements Observer {
 
         //application.setTextCalc(time.toString());
         calcTimes.add(time.toString()); //Add the string to the calcTimes array
-        System.out.println(calcTimes.get(calcTimes.size() - 1)); //Log the full array
+        //System.out.println(calcTimes.get(calcTimes.size() - 1)); //Log the full array
     }
 
 }
