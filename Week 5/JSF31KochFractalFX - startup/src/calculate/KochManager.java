@@ -8,7 +8,7 @@ import java.util.*;
 public class KochManager implements Observer {
 
     private JSF31KochFractalFX application;
-    private KochFractal koch;
+    private final KochFractal koch;
     private List<Edge> edges;
     private TimeStamp time;
     private ArrayList<String> calcTimes;
@@ -35,10 +35,25 @@ public class KochManager implements Observer {
         edges.clear();
 
         time.setBegin("Edges are being generated..");
+        Thread t1 = new Thread(() -> {
+            synchronized (koch){
+                koch.generateLeftEdge();
+            }
+        });
+        Thread t2 = new Thread(() -> {
+            synchronized (koch){
+                koch.generateBottomEdge();
+            }
+        });
+        Thread t3 = new Thread(() -> {
+            synchronized (koch){
+                koch.generateRightEdge();
+            }
+        });
 
-        koch.generateLeftEdge();
-        koch.generateBottomEdge();
-        koch.generateRightEdge();
+        t1.start();
+        t2.start();
+        t3.start();
 
         time.setEnd("Fractal generation done!");
 

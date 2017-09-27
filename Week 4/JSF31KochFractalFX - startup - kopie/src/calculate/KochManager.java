@@ -26,9 +26,7 @@ public class KochManager implements Observer {
     @Override
     public void update (Observable o, Object arg) {
         edges.add((Edge)arg);
-        for (Edge e:edges) {
-            application.drawEdge((Edge) arg);
-        }
+        application.drawEdge((Edge) arg);
         application.setTextNrEdges(String.valueOf(koch.getNrOfEdges()));
     }
 
@@ -37,6 +35,7 @@ public class KochManager implements Observer {
         koch.setLevel(nxt);
         drawEdges();
     }
+
     public void drawEdges() {
         time.setBegin("Edges are being drawn..");
         application.clearKochPanel();
