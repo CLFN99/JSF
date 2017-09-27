@@ -1,0 +1,6 @@
+
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(©»êÞùÿÿÿÿ
+Asquid:S1481",Remove this unused "fractal" local variable.(Žþ—Ó
+hsquid:S00101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(„ž³Þøÿÿÿÿ
+Psquid:S1854";Remove this useless assignment to local variable "fractal".(Žþ—Ó
