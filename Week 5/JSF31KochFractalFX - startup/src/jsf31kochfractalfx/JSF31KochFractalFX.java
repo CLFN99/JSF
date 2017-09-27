@@ -225,7 +225,7 @@ public class JSF31KochFractalFX extends Application {
     }
     
     private void increaseLevelButtonActionPerformed(ActionEvent event) {
-        if (currentLevel < 12) {
+        if (currentLevel < 120) { //Changed to allow for bigger drawings
             // resetZoom();
             currentLevel++;
             labelLevel.setText("Level: " + currentLevel);
