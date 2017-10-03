@@ -14,6 +14,7 @@ public class KochManager implements Observer {
     private List<Edge> edges;
     private TimeStamp time;
     private ArrayList<String> calcTimes;
+    private int count = 0;
 
     public KochManager(JSF31KochFractalFX application) {
         this.application = application;
@@ -61,14 +62,17 @@ public class KochManager implements Observer {
         edge3.start();
 
         time.setEnd("Fractal generation done!");
-
-        drawEdges();
+        if(count == 3){
+            application.requestDrawEdges();
+            count = 0;
+        }
     }
     public void drawEdges() {
 
         application.clearKochPanel();
 
         time.setBegin("Edges are being drawn..");
+
         for (Edge e:edges) {
             application.drawEdge(e);
         }
@@ -79,4 +83,5 @@ public class KochManager implements Observer {
         //System.out.println(calcTimes.get(calcTimes.size() - 1)); //Log the full array
     }
 
+    public void setCount(){count ++;}
 }

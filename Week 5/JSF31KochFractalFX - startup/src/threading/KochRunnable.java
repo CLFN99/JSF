@@ -28,7 +28,7 @@ public class KochRunnable implements Runnable, Observer {
      * @see Thread#run()
      */
     @Override
-    public void run() {
+    public  void run() {
         switch (type) {
             case LEFT:
                 done = fractal.generateLeftEdge();
@@ -45,7 +45,7 @@ public class KochRunnable implements Runnable, Observer {
         }
         System.out.println("Done generating, pushing list back to manager");
         manager.mergeEdgeList(this.edges);
-
+        manager.setCount();
     }
 
     public KochRunnable(KochType type, KochManager manager) {
