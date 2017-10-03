@@ -3,6 +3,11 @@
   <component name="issues">
     <option name="index">
       <map>
+        <entry key="/fragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../../../Week 5/JSF3_w05_klasvoorbeeld_a_RaceConditionExample/JSF31_w05_klasvoorbeeld_a_RaceConditionExample/src/raceconditionexample/RaceConditionExample.java">
           <value>
             <set />
@@ -19,6 +24,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/calculate/kochObserver.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/jsf31kochfractalfx/JSF31KochFractalFX.java">
           <value>
             <set />
           </value>
