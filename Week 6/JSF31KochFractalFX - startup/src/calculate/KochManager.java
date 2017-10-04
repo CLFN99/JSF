@@ -1,11 +1,15 @@
 package calculate;
 
 import jsf31kochfractalfx.JSF31KochFractalFX;
-import threading.KochRunnable;
+import threading.KochCallable;
 import threading.KochType;
 import timeutil.TimeStamp;
 
 import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class KochManager {
 
@@ -34,22 +38,26 @@ public class KochManager {
         edges.clear();
 
         time.setBegin("Edges are being generated..");
-        Thread edge1 = new Thread(new KochRunnable(KochType.LEFT, this, nxt)) {
+        ExecutorService pool = Executors.newFixedThreadPool(3);
+        KochCallable edge1 = new KochCallable(KochType.LEFT, this, nxt);
+        KochCallable edge2 = new KochCallable(KochType.RIGHT, this, nxt);
+        KochCallable edge3 = new KochCallable(KochType.BOTTOM, this, nxt);
+        Future<List> futEdge1 = pool.submit(edge1);
+        Future<List> futEdge2 = pool.submit(edge2);
+        Future<List> futEdge3 = pool.submit(edge3);
 
-        };
-        Thread edge2 = new Thread(new KochRunnable(KochType.RIGHT, this, nxt)) {
+        try {
+            mergeEdgeList(futEdge1.get());
+            mergeEdgeList(futEdge2.get());
+            mergeEdgeList(futEdge3.get());
+            application.requestDrawEdges();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
 
-        };
-        Thread edge3 = new Thread(new KochRunnable(KochType.BOTTOM, this, nxt)) {
-
-        };
-        edge1.setName("Left edge thread");
-        edge2.setName("Right edge thread");
-        edge3.setName("Bottom edge thread");
-        edge1.start();
-        edge2.start();
-        edge3.start();
-
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        pool.shutdown();
         time.setEnd("Fractal generation done!");
 
     }
