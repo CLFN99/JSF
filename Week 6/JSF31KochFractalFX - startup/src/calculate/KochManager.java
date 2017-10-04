@@ -72,9 +72,12 @@ public class KochManager {
         }
         time.setEnd("Fractal drawing done!");
 
-        //application.setTextCalc(time.toString());
+
         calcTimes.add(time.toString()); //Add the string to the calcTimes array
-        //System.out.println(calcTimes.get(calcTimes.size() - 1)); //Log the full array
+        System.out.println(calcTimes.get(calcTimes.size() - 1)); //Log the full array
+        application.setTextCalc(calcTimes.get(calcTimes.size() - 1));
+        time.init(); //Empty the internal time array
+        calcTimes.clear();
     }
 
     public synchronized void setCount(){
