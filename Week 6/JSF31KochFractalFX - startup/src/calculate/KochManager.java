@@ -3,6 +3,7 @@ package calculate;
 import jsf31kochfractalfx.JSF31KochFractalFX;
 import threading.KochCallable;
 import threading.KochType;
+import threading.ManagerRunnable;
 import timeutil.TimeStamp;
 
 import java.util.*;
@@ -38,26 +39,10 @@ public class KochManager {
         edges.clear();
 
         time.setBegin("Edges are being generated..");
-        ExecutorService pool = Executors.newFixedThreadPool(3);
-        KochCallable edge1 = new KochCallable(KochType.LEFT, this, nxt);
-        KochCallable edge2 = new KochCallable(KochType.RIGHT, this, nxt);
-        KochCallable edge3 = new KochCallable(KochType.BOTTOM, this, nxt);
-        Future<List> futEdge1 = pool.submit(edge1);
-        Future<List> futEdge2 = pool.submit(edge2);
-        Future<List> futEdge3 = pool.submit(edge3);
-
-        try {
-            mergeEdgeList(futEdge1.get());
-            mergeEdgeList(futEdge2.get());
-            mergeEdgeList(futEdge3.get());
-            application.requestDrawEdges();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        pool.shutdown();
+        ManagerRunnable mr = new ManagerRunnable(this, nxt);
+        Thread calcThread = new Thread(mr);
+        calcThread.start();
+        application.requestDrawEdges();
         time.setEnd("Fractal generation done!");
 
     }
@@ -75,6 +60,7 @@ public class KochManager {
         //application.setTextCalc(time.toString());
         calcTimes.add(time.toString()); //Add the string to the calcTimes array
         //System.out.println(calcTimes.get(calcTimes.size() - 1)); //Log the full array
+
     }
 
     public synchronized void setCount(){
