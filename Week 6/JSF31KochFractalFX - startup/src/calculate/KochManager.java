@@ -59,15 +59,13 @@ public class KochManager {
 
 
         calcTimes.add(time.toString()); //Add the string to the calcTimes array
-<<<<<<< HEAD
+
         //System.out.println(calcTimes.get(calcTimes.size() - 1)); //Log the full array
 
-=======
         System.out.println(calcTimes.get(calcTimes.size() - 1)); //Log the full array
         application.setTextCalc(calcTimes.get(calcTimes.size() - 1));
         time.init(); //Empty the internal time array
         calcTimes.clear();
->>>>>>> 22bb2a1efd1c44116866bdd99a702e87ef11ca5b
     }
 
     public synchronized void setCount(){
