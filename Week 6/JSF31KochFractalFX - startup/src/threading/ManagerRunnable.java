@@ -2,6 +2,7 @@ package threading;
 
 import calculate.KochFractal;
 import calculate.KochManager;
+import jsf31kochfractalfx.JSF31KochFractalFX;
 
 import java.util.List;
 import java.util.Observable;
@@ -14,10 +15,12 @@ import java.util.concurrent.Future;
 public class ManagerRunnable implements Runnable {
 
     private KochManager kochManager;
+    private JSF31KochFractalFX kochFractalFX;
     private int level;
 
-    public ManagerRunnable(KochManager kochManager, int level){
+    public ManagerRunnable(KochManager kochManager, JSF31KochFractalFX kochFractalFX, int level){
         this.kochManager = kochManager;
+        this.kochFractalFX = kochFractalFX;
         this.level = level;
     }
 
@@ -42,6 +45,8 @@ public class ManagerRunnable implements Runnable {
             e.printStackTrace();
         }
         pool.shutdown();
+
+        kochFractalFX.requestDrawEdges();
     }
 
 }

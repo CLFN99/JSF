@@ -39,10 +39,15 @@ public class KochManager {
         edges.clear();
 
         time.setBegin("Edges are being generated..");
-        ManagerRunnable mr = new ManagerRunnable(this, nxt);
+        ManagerRunnable mr = new ManagerRunnable(this, application, nxt);
         Thread calcThread = new Thread(mr);
         calcThread.start();
-        application.requestDrawEdges();
+//        try {
+//            calcThread.join(); //Waits until the calcThread is done
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        application.requestDrawEdges();
         time.setEnd("Fractal generation done!");
 
     }
@@ -59,15 +64,10 @@ public class KochManager {
 
 
         calcTimes.add(time.toString()); //Add the string to the calcTimes array
-<<<<<<< HEAD
-        //System.out.println(calcTimes.get(calcTimes.size() - 1)); //Log the full array
-
-=======
         System.out.println(calcTimes.get(calcTimes.size() - 1)); //Log the full array
         application.setTextCalc(calcTimes.get(calcTimes.size() - 1));
         time.init(); //Empty the internal time array
         calcTimes.clear();
->>>>>>> 22bb2a1efd1c44116866bdd99a702e87ef11ca5b
     }
 
     public synchronized void setCount(){
