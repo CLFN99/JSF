@@ -15,7 +15,7 @@ public class BallMonitor {
     private Condition okToRead = lock.newCondition();
     private Condition okToWrite = lock.newCondition();
 
-    public void enterReader() throws InterruptedException{
+    public void enterReader() throws InterruptedException {
         lock.lock();
         try {
             while (writersActive != 0) {
@@ -43,8 +43,11 @@ public class BallMonitor {
     public void enterWriter() throws InterruptedException {
         lock.lock();
         try {
-            while (writersActive > 0 || readersActive > 0)
+            while (writersActive > 0 || readersActive > 0) {
+                writersWaiting++;
                 okToWrite.await();
+                writersWaiting--;
+            }
             writersActive++;
         } finally {
             lock.unlock();
@@ -55,9 +58,9 @@ public class BallMonitor {
         lock.lock();
         try {
             writersActive--;
-            if(readersWaiting > 0)
-                okToRead.signalAll();
-            else okToWrite.signal();
+            if(writersWaiting > 0)
+                okToWrite.signal();
+            else okToRead.signalAll();
         }  finally {
             lock.unlock();
         }
