@@ -10,6 +10,7 @@ public class BallRunnable implements Runnable {
 
     private Ball ball;
     private BallMonitor bm;
+    private boolean inCS = false;
 
     public BallRunnable(Ball ball, BallMonitor bm) {
         this.ball = ball;
@@ -27,17 +28,21 @@ public class BallRunnable implements Runnable {
                     if (ball.isEnteringCs()) {
                         System.out.println("Reader entering");
                         bm.enterReader();
+                        inCS = true;
                     } else if (ball.isLeavingCs()) {
                         System.out.println("Reader exiting");
                         bm.exitReader();
+                        inCS = false;
                     }
                 } else if (ball.getColor() == Color.BLUE) {
                     if (ball.isEnteringCs()) {
                         System.out.println("Writer entering");
                         bm.enterWriter();
+                        inCS = true;
                     } else if (ball.isLeavingCs()) {
                         System.out.println("Writer exiting");
                         bm.exitWriter();
+                        inCS = false;
                     }
                 }
 
@@ -47,6 +52,14 @@ public class BallRunnable implements Runnable {
                 
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
+            }
+        }
+
+        if (Thread.currentThread().isInterrupted() && inCS) {
+            if (ball.getColor() == Color.RED) {
+                bm.exitReader();
+            } else {
+                bm.exitWriter();
             }
         }
     }

@@ -24,6 +24,10 @@ public class BallMonitor {
                 readersWaiting--;
             }
             readersActive++;
+        } catch (InterruptedException iex) {
+            readersWaiting--;
+            System.out.println("Decreased readers waiting");
+            throw iex;
         } finally {
             lock.unlock();
         }
@@ -49,6 +53,10 @@ public class BallMonitor {
                 writersWaiting--;
             }
             writersActive++;
+        } catch (InterruptedException iex) {
+            writersWaiting--;
+            System.out.println("Decreased writers waiting");
+            throw iex;
         } finally {
             lock.unlock();
         }
