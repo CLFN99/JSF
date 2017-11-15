@@ -20,6 +20,7 @@ import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import threading.CalcTask;
 import threading.KochType;
 
@@ -209,6 +210,19 @@ public class JSF31KochFractalFX extends Application {
         primaryStage.setTitle("Koch Fractal");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent we) {
+                if (task != null) {
+                    task.cancel(true);
+                }
+                // do not forget to shutdown pool, otherwise the application
+                // wil not terminate!
+                kochManager.terminate();
+            }
+        });
+
     }
     
     public void clearKochPanel() {
@@ -368,11 +382,11 @@ public class JSF31KochFractalFX extends Application {
         // Reset progress
         System.out.println("Binding " + type + " to progressbar " + pb.getId());
         pb.setProgress(0);
-//        try {
-//            Thread.sleep(75);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Thread.sleep(75);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         pb.progressProperty().bind(task.progressProperty());
         System.out.println("Bound " + type + " to progressbar " + pb.getId());
 
