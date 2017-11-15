@@ -92,4 +92,8 @@ public class KochManager {
         time.init(); //Empty the internal time array
         calcTimes.clear();
     }
+
+    public void terminate() {
+        pool.shutdown();
+    }
 }

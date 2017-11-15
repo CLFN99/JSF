@@ -20,6 +20,7 @@ import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import threading.CalcTask;
 import threading.KochType;
 
@@ -209,6 +210,19 @@ public class JSF31KochFractalFX extends Application {
         primaryStage.setTitle("Koch Fractal");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent we) {
+                if (task != null) {
+                    task.cancel(true);
+                }
+                // do not forget to shutdown pool, otherwise the application
+                // wil not terminate!
+                kochManager.terminate();
+            }
+        });
+
     }
     
     public void clearKochPanel() {
