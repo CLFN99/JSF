@@ -1,6 +1,7 @@
 package calculate;
 
 import jsf31kochfractalfx.JSF31KochFractalFX;
+import threading.CalcTask;
 import threading.KochCallable;
 import threading.KochType;
 import threading.ManagerRunnable;
@@ -18,6 +19,7 @@ public class KochManager {
     private List<Edge> edges;
     private TimeStamp time;
     private List<String> calcTimes;
+    private final ExecutorService pool = Executors.newFixedThreadPool(3);
 
     public KochManager(JSF31KochFractalFX application) {
         this.application = application;
@@ -38,11 +40,9 @@ public class KochManager {
         edges.clear();
 
         time.setBegin("Edges are being generated..");
-        ManagerRunnable mr = new ManagerRunnable(this, nxt);
-        Thread calcThread = new Thread(mr);
-        System.out.println(edges.size());
-        calcThread.start();
-        System.out.println(edges.size());
+        pool.submit(application.createTask(KochType.LEFT));
+        pool.submit(application.createTask(KochType.RIGHT));
+        pool.submit(application.createTask(KochType.BOTTOM));
 
         time.setEnd("Fractal generation done!");
         application.requestDrawEdges();
@@ -69,5 +69,4 @@ public class KochManager {
         time.init(); //Empty the internal time array
         calcTimes.clear();
     }
-
 }

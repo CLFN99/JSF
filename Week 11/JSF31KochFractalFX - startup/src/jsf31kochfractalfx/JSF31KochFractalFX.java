@@ -20,6 +20,8 @@ import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import threading.CalcTask;
+import threading.KochType;
 
 /**
  *
@@ -36,6 +38,8 @@ public class JSF31KochFractalFX extends Application {
     private double lastDragX = 0.0;
     private double lastDragY = 0.0;
 
+    private int taskNumber;
+    private CalcTask task;
     // Koch manager
     // TO DO: Create class KochManager in package calculate
     private KochManager kochManager;
@@ -56,7 +60,7 @@ public class JSF31KochFractalFX extends Application {
     private ProgressBar pbBottom;
     private ProgressBar pbRight;
     private Label progressLeft;
-    private Label progresBottom;
+    private Label progressBottom;
     private Label progressRight;
 
     // Koch panel and its size
@@ -152,6 +156,14 @@ public class JSF31KochFractalFX extends Application {
         grid.add(pbBottom,2, 8);
         pbRight = new ProgressBar();
         grid.add(pbRight, 2, 9);
+
+        // Adding progress labels
+        progressLeft = new Label();
+        progressBottom= new Label();
+        progressRight= new Label();
+        grid.add(progressLeft, 3, 7);
+        grid.add(progressBottom, 3, 8);
+        grid.add(progressRight, 3, 9);
 
         // Add mouse clicked event to Koch panel
         kochPanel.addEventHandler(MouseEvent.MOUSE_CLICKED,
@@ -326,6 +338,45 @@ public class JSF31KochFractalFX extends Application {
      *
      * @param args the command line arguments
      */
+
+    public CalcTask createTask(KochType type) {
+        // generates the left edge
+        // If there's already a task running: first unbind properties
+        Label lbl = new Label();
+        ProgressBar pb = new ProgressBar();
+        switch(type){
+            case LEFT:
+                lbl = progressLeft;
+                pb = pbLeft;
+                break;
+            case RIGHT:
+                lbl = progressRight;
+                pb = pbRight;
+                break;
+            case BOTTOM:
+                lbl = progressBottom;
+                pb = pbBottom;
+                break;
+        }
+
+        if (task != null) {
+            pb.progressProperty().unbind();
+            lbl.textProperty().unbind();
+            task.cancel();
+        }
+
+        // There's a new task that performs some work
+        task = new CalcTask(type, this.kochManager, currentLevel);
+        taskNumber++;
+
+        // Reset progress
+        pb.setProgress(0);
+        pb.progressProperty().bind(task.progressProperty());
+
+        // Provides information about count
+        lbl.textProperty().bind(task.messageProperty());
+        return task;
+    }
     public static void main(String[] args) {
         launch(args);
     }
