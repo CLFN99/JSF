@@ -3,22 +3,37 @@ package threading;
 import calculate.Edge;
 import calculate.KochFractal;
 import calculate.KochManager;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
-import java.util.List;
+import javafx.scene.paint.Color;
 
-public class  CalcTask extends Task<List<Edge>> {
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
+public class  CalcTask extends Task<List<Edge>> implements Observer {
 
     private KochType type = null;
     private KochFractal fractal;
     private double MAX;
+    private List<Edge> edges;
 
     public CalcTask(KochType type, KochManager manager, int level){
         this.type = type;
+        edges = new LinkedList<>();
         fractal = new KochFractal();
         fractal.setLevel(level);
-
+        fractal.addObserver(this);
         //calculates the amnt of edges for this side
         MAX = Math.pow(4, level);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        //arg = the generated edge. This should be added to an array, which should be pushed back to the manager in a synchronized way
+        edges.add((Edge)arg);
+       
     }
 
     @Override
@@ -40,7 +55,8 @@ public class  CalcTask extends Task<List<Edge>> {
             updateProgress(i, MAX);
             updateMessage("Nr edges: " + i);
         }
-        return null;
+
+        return edges;
     }
 
     @Override
