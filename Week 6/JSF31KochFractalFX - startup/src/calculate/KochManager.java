@@ -48,7 +48,7 @@ public class KochManager {
 //            e.printStackTrace();
 //        }
 //        application.requestDrawEdges();
-        time.setEnd("Fractal generation done!");
+        time.setEnd("Thread starting done!");
 
     }
     public void drawEdges() {

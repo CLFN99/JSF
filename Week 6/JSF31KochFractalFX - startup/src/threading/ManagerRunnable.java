@@ -26,7 +26,7 @@ public class ManagerRunnable implements Runnable {
 
     @Override
     public void run() {
-        ExecutorService pool = Executors.newFixedThreadPool(3);
+        ExecutorService pool = Executors.newFixedThreadPool(3); //Zou in de manager aangemaakt moeten worden
         KochCallable edge1 = new KochCallable(KochType.LEFT, kochManager, level);
         KochCallable edge2 = new KochCallable(KochType.RIGHT, kochManager, level);
         KochCallable edge3 = new KochCallable(KochType.BOTTOM, kochManager, level);
@@ -44,7 +44,7 @@ public class ManagerRunnable implements Runnable {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        pool.shutdown();
+        pool.shutdown(); //Zou enkel op shutdown van de applicatie moeten gebeuren
 
         kochFractalFX.requestDrawEdges();
     }
