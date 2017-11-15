@@ -38,6 +38,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../../../Week 11/JSF3_w11_klasvoorbeeld_JavaFXTaskProgressBar/JSF32_w11_klasvoorbeeld_JavaFXTaskProgressBar/src/javafxapplicationtask/JavaFXApplicationWithTask.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../../Week 11/JSF3_w11_klasvoorbeeld_JavaFXTaskProgressBar/JSF32_w11_klasvoorbeeld_JavaFXTaskProgressBar/src/javafxapplicationtask/MyJavaFXTask.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../../../Week 5/JSF3_w05_klasvoorbeeld_a_RaceConditionExample/JSF31_w05_klasvoorbeeld_a_RaceConditionExample/src/raceconditionexample/RaceConditionExample.java">
           <value>
             <set />
@@ -79,6 +89,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/sample/sample.fxml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/threading/CalcTask.java">
           <value>
             <set />
           </value>

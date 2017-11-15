@@ -18,7 +18,6 @@ public class KochManager {
     private List<Edge> edges;
     private TimeStamp time;
     private List<String> calcTimes;
-    private int count = 0;
 
     public KochManager(JSF31KochFractalFX application) {
         this.application = application;
@@ -41,11 +40,14 @@ public class KochManager {
         time.setBegin("Edges are being generated..");
         ManagerRunnable mr = new ManagerRunnable(this, nxt);
         Thread calcThread = new Thread(mr);
+        System.out.println(edges.size());
         calcThread.start();
-        application.requestDrawEdges();
-        time.setEnd("Fractal generation done!");
+        System.out.println(edges.size());
 
+        time.setEnd("Fractal generation done!");
+        application.requestDrawEdges();
     }
+
     public void drawEdges() {
 
         application.clearKochPanel();
@@ -68,11 +70,4 @@ public class KochManager {
         calcTimes.clear();
     }
 
-    public synchronized void setCount(){
-        count++;
-        if(count >= 3){
-            application.requestDrawEdges();
-            count = 0;
-        }
-    }
 }
