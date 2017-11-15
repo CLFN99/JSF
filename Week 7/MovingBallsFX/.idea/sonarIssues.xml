@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="issues">
+    <option name="index">
+      <map>
+        <entry key="$PROJECT_DIR$/../../../../Week 7/JSF3_w07_StartProject/MovingBallsFX/src/movingballsfx/BallRunnable.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../../Week 7/JSF3_w07_StartProject/MovingBallsFX/src/movingballsfx/Monitor.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/movingballsfx/BallRunnable.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../../../PTS3/ProftaakS3/_TetrUs/core/src/com/magiclegend/tetrus/Game/Canvas/Block.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../../../PTS3/ProftaakS3/_TetrUs/core/src/com/magiclegend/tetrus/Game/Canvas/Canvas.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../../../PTS3/ProftaakS3/_TetrUs/core/src/com/magiclegend/tetrus/Game/Canvas/GameField.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../../../PTS3/ProftaakS3/_TetrUs/core/src/com/magiclegend/tetrus/Game/Canvas/Shape.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../../../PTS3/ProftaakS3/_TetrUs/core/src/com/magiclegend/tetrus/Game/Screens/MainScreen.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../../../PTS3/ProftaakS3/_TetrUs/desktop/src/com/magiclegend/tetrus/desktop/DesktopLauncher.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../../../PTS3/ProftaakS3/_TetrUs/lib/gdx-1.9.6.jar!/com/badlogic/gdx/Game.class">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../../../PTS3/ProftaakS3/_TetrUs/lib/gdx-1.9.6.jar!/com/badlogic/gdx/graphics/Texture.class">
+          <value>
+            <set />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
