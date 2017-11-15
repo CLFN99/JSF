@@ -42,8 +42,18 @@ public class KochManager {
         ManagerRunnable mr = new ManagerRunnable(this, nxt);
         Thread calcThread = new Thread(mr);
         calcThread.start();
+<<<<<<< HEAD
+//        try {
+//            calcThread.join(); //Waits until the calcThread is done
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        application.requestDrawEdges();
+        time.setEnd("Thread starting done!");
+=======
         application.requestDrawEdges();
         time.setEnd("Fractal generation done!");
+>>>>>>> 1638b08f180ba014e6b27cb27c5576db71891874
 
     }
     public void drawEdges() {

@@ -59,7 +59,7 @@ public class KochCallable implements Callable, Observer {
                 break;
         }
         System.out.println("Done generating, pushing list back to manager");
-        manager.mergeEdgeList(this.edges);
+        //manager.mergeEdgeList(this.edges);
        // manager.setCount();
         return edges;
     }
