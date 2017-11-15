@@ -36,7 +36,7 @@ public class KochManager {
     }
 
     public void changeLevel(int nxt) {
-
+    //Synchronized
         edges.clear();
 
         time.setBegin("Edges are being generated..");

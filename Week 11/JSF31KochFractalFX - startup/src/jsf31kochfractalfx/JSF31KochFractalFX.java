@@ -143,27 +143,31 @@ public class JSF31KochFractalFX extends Application {
 
         // Labels for progress bars
         Label lblProgress1 = new Label("Progress left:");
-        Label lblProgress2 = new Label("Progress bottom:");
-        Label lblProgress3 = new Label("Progress right:");
+        Label lblProgress2 = new Label("Progress right:");
+        Label lblProgress3 = new Label("Progress bottom:");
         grid.add(lblProgress1, 0, 7);
         grid.add(lblProgress2, 0, 8);
         grid.add(lblProgress3, 0, 9);
 
         // Adding progress bars
         pbLeft = new ProgressBar();
+        pbLeft.setId("pbLeft");
         grid.add(pbLeft, 2, 7);
-        pbBottom = new ProgressBar();
-        grid.add(pbBottom,2, 8);
         pbRight = new ProgressBar();
-        grid.add(pbRight, 2, 9);
+        pbRight.setId("pbRight");
+        grid.add(pbRight, 2, 8);
+        pbBottom = new ProgressBar();
+        pbBottom.setId("pbBottom");
+        grid.add(pbBottom,2, 9);
+
 
         // Adding progress labels
         progressLeft = new Label();
-        progressBottom= new Label();
         progressRight= new Label();
+        progressBottom= new Label();
         grid.add(progressLeft, 3, 7);
-        grid.add(progressBottom, 3, 8);
-        grid.add(progressRight, 3, 9);
+        grid.add(progressRight, 3, 8);
+        grid.add(progressBottom, 3, 9);
 
         // Add mouse clicked event to Koch panel
         kochPanel.addEventHandler(MouseEvent.MOUSE_CLICKED,
@@ -330,20 +334,11 @@ public class JSF31KochFractalFX extends Application {
                 e.color);
     }
 
-    /**
-     * The main() method is ignored in correctly deployed JavaFX application.
-     * main() serves only as fallback in case the application can not be
-     * launched through deployment artifacts, e.g., in IDEs with limited FX
-     * support. NetBeans ignores main().
-     *
-     * @param args the command line arguments
-     */
-
     public CalcTask createTask(KochType type) {
         // generates the left edge
         // If there's already a task running: first unbind properties
         Label lbl = new Label();
-        ProgressBar pb = new ProgressBar();
+        ProgressBar pb = null; //= new ProgressBar();
         switch(type){
             case LEFT:
                 lbl = progressLeft;
@@ -360,9 +355,10 @@ public class JSF31KochFractalFX extends Application {
         }
 
         if (task != null) {
+            task.cancel();
             pb.progressProperty().unbind();
             lbl.textProperty().unbind();
-            task.cancel();
+
         }
 
         // There's a new task that performs some work
@@ -370,13 +366,35 @@ public class JSF31KochFractalFX extends Application {
         taskNumber++;
 
         // Reset progress
+        System.out.println("Binding " + type + " to progressbar " + pb.getId());
         pb.setProgress(0);
+//        try {
+//            Thread.sleep(75);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         pb.progressProperty().bind(task.progressProperty());
+        System.out.println("Bound " + type + " to progressbar " + pb.getId());
 
         // Provides information about count
         lbl.textProperty().bind(task.messageProperty());
+
+//        try {
+//            Thread.sleep(10000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         return task;
     }
+
+    /**
+     * The main() method is ignored in correctly deployed JavaFX application.
+     * main() serves only as fallback in case the application can not be
+     * launched through deployment artifacts, e.g., in IDEs with limited FX
+     * support. NetBeans ignores main().
+     *
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
