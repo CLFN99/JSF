@@ -55,7 +55,7 @@ public class KochCallable implements Callable, Observer {
                 done = fractal.generateBottomEdge();
                 break;
             default:
-                System.out.println("ERR: Runnable did not jjjget a type!");
+                System.out.println("ERR: Runnable did not get a type!");
                 break;
         }
         System.out.println("Done generating, pushing list back to manager");

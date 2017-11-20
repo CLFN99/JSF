@@ -4,21 +4,32 @@ import calculate.Edge;
 import calculate.KochFractal;
 import calculate.KochManager;
 import javafx.concurrent.Task;
-import java.util.List;
 
-public class  CalcTask extends Task<List<Edge>> {
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
+public class CalcTask extends Task<List<Edge>> implements Observer {
 
     private KochType type = null;
-    private KochFractal fractal;
+    private KochFractal fractal; //Moved to kochfractalFX, subscribe there fractal.addObserver(this);
     private double MAX;
+    List<Edge> edges;
 
-    public CalcTask(KochType type, KochManager manager, int level){
+    public CalcTask(KochType type, KochFractal fractal, int level){
         this.type = type;
-        fractal = new KochFractal();
+        //fractal = new KochFractal();
         fractal.setLevel(level);
+        this.fractal = fractal;
+        this.edges = new LinkedList<>();
 
-        //calculates the amnt of edges for this side
+        //calculates the amount of edges for this side
         MAX = Math.pow(4, level);
+    }
+
+    public KochType getType() {
+        return this.type;
     }
 
     @Override
@@ -36,15 +47,16 @@ public class  CalcTask extends Task<List<Edge>> {
             default:
                 break;
         }
-        for(int i = 0; i <= MAX; i++){
+        for(int i = 0; i <= MAX; i++){ //Absolute inaccurate representation of the calculating progress. All this is measuring how fast the processor can count to the MAX value.
             updateProgress(i, MAX);
             updateMessage("Nr edges: " + i);
         }
-        return null;
+        return edges;
     }
 
     @Override
     protected void cancelled() {
+        fractal.cancel();
         super.cancelled();
     }
 
@@ -90,5 +102,19 @@ public class  CalcTask extends Task<List<Edge>> {
     @Override
     protected void done() {
         super.done();
+    }
+
+    /**
+     * This method is called whenever the observed object is changed. An
+     * application calls an <tt>Observable</tt> object's
+     * <code>notifyObservers</code> method to have all the object's
+     * observers notified of the change.
+     *
+     * @param o   the observable object.
+     * @param arg an argument passed to the <code>notifyObservers</code>
+     */
+    @Override
+    public void update(Observable o, Object arg) {
+        edges.add((Edge) arg);
     }
 }

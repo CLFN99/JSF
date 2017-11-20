@@ -20,6 +20,7 @@ public class KochManager {
     private TimeStamp time;
     private List<String> calcTimes;
     private final ExecutorService pool = Executors.newFixedThreadPool(3);
+    //private CalcTask task;
 
     public KochManager(JSF31KochFractalFX application) {
         this.application = application;
@@ -35,14 +36,13 @@ public class KochManager {
         System.out.println("Post merge: " + edges.size());
     }
 
-    public void changeLevel(int nxt) {
-    //Synchronized
+    public synchronized void changeLevel(int nxt) {
         edges.clear();
 
         time.setBegin("Edges are being generated..");
-        pool.submit(application.createTask(KochType.LEFT));
-        pool.submit(application.createTask(KochType.RIGHT));
-        pool.submit(application.createTask(KochType.BOTTOM));
+        pool.submit(createTask(KochType.LEFT));
+        pool.submit(createTask(KochType.RIGHT));
+        pool.submit(createTask(KochType.BOTTOM));
 
         time.setEnd("Fractal generation done!");
         application.requestDrawEdges();
@@ -52,11 +52,12 @@ public class KochManager {
 
         application.clearKochPanel();
 
-        time.setBegin("Edges are being drawn..");
+        time.setBegin("Edges are being drawn...");
 
         for (Edge e:edges) {
-            application.drawEdge(e);
+            application.drawEdge(e, e.color);
         }
+
         time.setEnd("Fractal drawing done!");
 
 
@@ -68,5 +69,40 @@ public class KochManager {
         application.setTextCalc(calcTimes.get(calcTimes.size() - 1));
         time.init(); //Empty the internal time array
         calcTimes.clear();
+    }
+
+    /**
+     * Creates a new task to be calculated.
+     * @param type The side that has to be calculated.
+     * @return The task object.
+     */
+    private CalcTask createTask(KochType type) {
+//        if (task != null) {
+//            task.cancel();
+//            application.unbindProperties(task);
+//        }
+
+        KochFractal fractal = new KochFractal();
+        CalcTask task = new CalcTask(type, fractal, application.getCurrentLevel());
+
+        //Add listener that will fetch the result when the task is completed
+        task.setOnSucceeded(e -> {
+            System.out.println("Retrieved result from " + task.getType());
+            System.out.println(task.getValue());
+            mergeEdgeList(task.getValue());
+            application.unbindProperties(task);
+        });
+
+        //fractal.addObserver(this); //Depreciated? Replaced by the setOnSucceed event listener?
+        fractal.addObserver(application); //Adding listener to allow for the white lines
+        fractal.addObserver(task); //Adding task listener to allow the task to gather a list of generated edges
+
+        application.bindProperties(task);
+
+        return task;
+    }
+
+    public void terminate() {
+        pool.shutdown();
     }
 }
