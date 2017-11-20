@@ -256,31 +256,6 @@ public class JSF31KochFractalFX extends Application {
         // Draw line
         gc.strokeLine(e1.X1,e1.Y1,e1.X2,e1.Y2);
     }
-
-    public void drawEdge(Edge e, Color color) {
-        // Graphics
-        GraphicsContext gc = kochPanel.getGraphicsContext2D();
-
-        // Adjust edge for zoom and drag
-        Edge e1 = edgeAfterZoomAndDrag(e);
-
-        // Set line color
-        gc.setStroke(color);
-
-        // Set line width depending on level
-        if (currentLevel <= 3) {
-            gc.setLineWidth(2.0);
-        }
-        else if (currentLevel <=5 ) {
-            gc.setLineWidth(1.5);
-        }
-        else {
-            gc.setLineWidth(1.0);
-        }
-
-        // Draw line
-        gc.strokeLine(e1.X1,e1.Y1,e1.X2,e1.Y2);
-    }
     
     public void setTextNrEdges(String text) {
         labelNrEdgesText.setText(text);
@@ -394,9 +369,10 @@ public class JSF31KochFractalFX extends Application {
         }
 
         if (task != null) {
-           // task.cancel();
+            task.cancel();
             pb.progressProperty().unbind();
             lbl.textProperty().unbind();
+
         }
 
         // There's a new task that performs some work
@@ -406,11 +382,11 @@ public class JSF31KochFractalFX extends Application {
         // Reset progress
         System.out.println("Binding " + type + " to progressbar " + pb.getId());
         pb.setProgress(0);
-        try {
-            Thread.sleep(75);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(75);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         pb.progressProperty().bind(task.progressProperty());
         System.out.println("Bound " + type + " to progressbar " + pb.getId());
 

@@ -1,7 +1,5 @@
 package calculate;
 
-import javafx.concurrent.Task;
-import javafx.scene.paint.Color;
 import jsf31kochfractalfx.JSF31KochFractalFX;
 import threading.CalcTask;
 import threading.KochCallable;
@@ -10,7 +8,6 @@ import threading.ManagerRunnable;
 import timeutil.TimeStamp;
 
 import java.util.*;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -38,37 +35,17 @@ public class KochManager {
         System.out.println("Post merge: " + edges.size());
     }
 
-    public synchronized void changeLevel(int nxt) {
-        //Synchronized
+    public void changeLevel(int nxt) {
+    //Synchronized
         edges.clear();
 
         time.setBegin("Edges are being generated..");
-        CalcTask taskLeft = application.createTask(KochType.LEFT);
-        CalcTask taskRight = application.createTask(KochType.RIGHT);
-        CalcTask taskBottom = application.createTask(KochType.BOTTOM);
-        pool.submit(taskLeft);
-        pool.submit(taskRight);
-        pool.submit(taskBottom);
-
-        try {
-            for(Edge e : taskLeft.get()){
-                application.drawEdge(e, Color.WHITE);
-            }
-            mergeEdgeList(taskLeft.get());
-            mergeEdgeList(taskRight.get());
-            mergeEdgeList(taskBottom.get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        pool.submit(application.createTask(KochType.LEFT));
+        pool.submit(application.createTask(KochType.RIGHT));
+        pool.submit(application.createTask(KochType.BOTTOM));
 
         time.setEnd("Fractal generation done!");
         application.requestDrawEdges();
-    }
-
-    public void drawSingleEdge(Edge e){
-
     }
 
     public void drawEdges() {
