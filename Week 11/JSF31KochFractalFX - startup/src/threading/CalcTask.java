@@ -45,8 +45,6 @@ public class  CalcTask extends Task<List<Edge>> {
 
     @Override
     protected void cancelled() {
-        System.out.println("Canceled " + type);
-        fractal.cancel();
         super.cancelled();
     }
 
