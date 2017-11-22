@@ -63,8 +63,8 @@
           <file leaf-file-name="KochManager.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/calculate/KochManager.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
-                  <caret line="41" column="22" lean-forward="false" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+                <state relative-caret-position="578">
+                  <caret line="96" column="0" lean-forward="true" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -83,10 +83,10 @@
           <file leaf-file-name="CalcTask.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/threading/CalcTask.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="28" column="33" lean-forward="false" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+                <state relative-caret-position="408">
+                  <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
                   <folding>
-                    <marker date="1511343643498" expanded="true" signature="2608:2616" ph="{...}" />
+                    <marker date="1511344105120" expanded="true" signature="2834:2842" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -95,30 +95,13 @@
           <file leaf-file-name="JSF31KochFractalFX.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/jsf31kochfractalfx/JSF31KochFractalFX.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="5644">
-                  <caret line="373" column="5" lean-forward="false" selection-start-line="373" selection-start-column="5" selection-end-line="373" selection-end-column="5" />
+                <state relative-caret-position="5372">
+                  <caret line="357" column="5" lean-forward="false" selection-start-line="357" selection-start-column="5" selection-end-line="357" selection-end-column="5" />
                   <folding>
-                    <element signature="e#3725#3726#0" expanded="true" />
-                    <element signature="e#3798#3799#0" expanded="true" />
-                    <element signature="e#4162#4163#0" expanded="true" />
-                    <element signature="e#4235#4236#0" expanded="true" />
-                    <element signature="e#4595#4596#0" expanded="true" />
-                    <element signature="e#4665#4666#0" expanded="true" />
-                    <element signature="e#5889#5890#0" expanded="true" />
-                    <element signature="e#5957#5958#0" expanded="true" />
-                    <element signature="e#6217#6218#0" expanded="true" />
-                    <element signature="e#6285#6286#0" expanded="true" />
-                    <element signature="e#6501#6502#0" expanded="true" />
-                    <element signature="e#6561#6562#0" expanded="true" />
-                    <element signature="e#9096#9097#0" expanded="true" />
-                    <element signature="e#9142#9143#0" expanded="true" />
-                    <element signature="e#9190#9191#0" expanded="true" />
-                    <element signature="e#9233#9234#0" expanded="true" />
-                    <element signature="e#9281#9282#0" expanded="true" />
-                    <element signature="e#9324#9325#0" expanded="true" />
-                    <element signature="e#9462#9463#0" expanded="true" />
-                    <element signature="e#9517#9518#0" expanded="true" />
-                    <element signature="docComment;method#main#0;class#JSF31KochFractalFX#0" expanded="false" />
+                    <marker date="1511344105116" expanded="true" signature="13992:13998" ph="{...}" />
+                    <marker date="1511344105116" expanded="false" signature="14004:14336" ph="/**...*/" />
+                    <marker date="1511344105116" expanded="false" signature="14379:14390" ph=" { " />
+                    <marker date="1511344105116" expanded="false" signature="14403:14409" ph=" }" />
                   </folding>
                 </state>
               </provider>
@@ -131,10 +114,34 @@
           <file leaf-file-name="JSF31KochFractalFX.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/jsf31kochfractalfx/JSF31KochFractalFX.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="822">
-                  <caret line="406" column="19" lean-forward="false" selection-start-line="406" selection-start-column="19" selection-end-line="406" selection-end-column="19" />
+                <state relative-caret-position="1315">
+                  <caret line="415" column="19" lean-forward="false" selection-start-line="415" selection-start-column="19" selection-end-line="415" selection-end-column="19" />
                   <folding>
-                    <element signature="docComment;method#main#0;class#JSF31KochFractalFX#0" expanded="false" />
+                    <element signature="e#3962#3963#0" expanded="true" />
+                    <element signature="e#4035#4036#0" expanded="true" />
+                    <element signature="e#4399#4400#0" expanded="true" />
+                    <element signature="e#4472#4473#0" expanded="true" />
+                    <element signature="e#4832#4833#0" expanded="true" />
+                    <element signature="e#4902#4903#0" expanded="true" />
+                    <element signature="e#6126#6127#0" expanded="true" />
+                    <element signature="e#6194#6195#0" expanded="true" />
+                    <element signature="e#6454#6455#0" expanded="true" />
+                    <element signature="e#6522#6523#0" expanded="true" />
+                    <element signature="e#6738#6739#0" expanded="true" />
+                    <element signature="e#6798#6799#0" expanded="true" />
+                    <element signature="e#8577#8578#0" expanded="true" />
+                    <element signature="e#8617#8618#0" expanded="true" />
+                    <element signature="e#8668#8669#0" expanded="true" />
+                    <element signature="e#8714#8715#0" expanded="true" />
+                    <element signature="e#8762#8763#0" expanded="true" />
+                    <element signature="e#8805#8806#0" expanded="true" />
+                    <element signature="e#8853#8854#0" expanded="true" />
+                    <element signature="e#8896#8897#0" expanded="true" />
+                    <element signature="e#9034#9035#0" expanded="true" />
+                    <element signature="e#9089#9090#0" expanded="true" />
+                    <marker date="1511344105116" expanded="false" signature="14004:14336" ph="/**...*/" />
+                    <marker date="1511344105116" expanded="false" signature="14379:14390" ph=" { " />
+                    <marker date="1511344105116" expanded="false" signature="14403:14409" ph=" }" />
                   </folding>
                 </state>
               </provider>
@@ -484,10 +491,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40524000" />
+    <option name="totallyTimeSpent" value="24499000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
@@ -511,19 +519,40 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3995657" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="SonarQube" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39978448" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26818675" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17750533" sideWeight="0.6703755" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -552,7 +581,39 @@
         <state relative-caret-position="357">
           <caret line="34" column="35" lean-forward="false" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
           <folding>
-            <element signature="docComment;method#main#0;class#JSF31KochFractalFX#0" expanded="false" />
+            <marker date="1511344105116" expanded="true" signature="13992:13998" ph="{...}" />
+            <marker date="1511344105116" expanded="false" signature="14004:14336" ph="/**...*/" />
+            <marker date="1511344105116" expanded="false" signature="14379:14390" ph=" { " />
+            <marker date="1511344105116" expanded="false" signature="14403:14409" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/calculate/KochManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/timeutil/TimeStamp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2898">
+          <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/jsf31kochfractalfx/JSF31KochFractalFX.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="34" column="35" lean-forward="false" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
+          <folding>
+            <marker date="1511344105116" expanded="true" signature="13992:13998" ph="{...}" />
+            <marker date="1511344105116" expanded="false" signature="14004:14336" ph="/**...*/" />
+            <marker date="1511344105116" expanded="false" signature="14379:14390" ph=" { " />
+            <marker date="1511344105116" expanded="false" signature="14403:14409" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -580,7 +641,10 @@
         <state relative-caret-position="693">
           <caret line="50" column="28" lean-forward="true" selection-start-line="50" selection-start-column="28" selection-end-line="50" selection-end-column="28" />
           <folding>
-            <element signature="docComment;method#main#0;class#JSF31KochFractalFX#0" expanded="false" />
+            <marker date="1511344105116" expanded="true" signature="13992:13998" ph="{...}" />
+            <marker date="1511344105116" expanded="false" signature="14004:14336" ph="/**...*/" />
+            <marker date="1511344105116" expanded="false" signature="14379:14390" ph=" { " />
+            <marker date="1511344105116" expanded="false" signature="14403:14409" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -649,7 +713,10 @@
         <state relative-caret-position="357">
           <caret line="34" column="35" lean-forward="false" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
           <folding>
-            <element signature="docComment;method#main#0;class#JSF31KochFractalFX#0" expanded="false" />
+            <marker date="1511344105116" expanded="true" signature="13992:13998" ph="{...}" />
+            <marker date="1511344105116" expanded="false" signature="14004:14336" ph="/**...*/" />
+            <marker date="1511344105116" expanded="false" signature="14379:14390" ph=" { " />
+            <marker date="1511344105116" expanded="false" signature="14403:14409" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -715,7 +782,10 @@
         <state relative-caret-position="357">
           <caret line="34" column="35" lean-forward="false" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
           <folding>
-            <element signature="docComment;method#main#0;class#JSF31KochFractalFX#0" expanded="false" />
+            <marker date="1511344105116" expanded="true" signature="13992:13998" ph="{...}" />
+            <marker date="1511344105116" expanded="false" signature="14004:14336" ph="/**...*/" />
+            <marker date="1511344105116" expanded="false" signature="14379:14390" ph=" { " />
+            <marker date="1511344105116" expanded="false" signature="14403:14409" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -743,7 +813,10 @@
         <state relative-caret-position="693">
           <caret line="50" column="28" lean-forward="true" selection-start-line="50" selection-start-column="28" selection-end-line="50" selection-end-column="28" />
           <folding>
-            <element signature="docComment;method#main#0;class#JSF31KochFractalFX#0" expanded="false" />
+            <marker date="1511344105116" expanded="true" signature="13992:13998" ph="{...}" />
+            <marker date="1511344105116" expanded="false" signature="14004:14336" ph="/**...*/" />
+            <marker date="1511344105116" expanded="false" signature="14379:14390" ph=" { " />
+            <marker date="1511344105116" expanded="false" signature="14403:14409" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -891,37 +964,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/calculate/KochFractal.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+          <folding>
+            <marker date="1511344105120" expanded="true" signature="2834:2842" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/threading/CalcTask.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/threading/CalcTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="28" column="33" lean-forward="false" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
-          <folding>
-            <marker date="1511343643498" expanded="true" signature="2608:2616" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/calculate/KochManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="41" column="22" lean-forward="false" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
-          <folding />
+        <state relative-caret-position="5372">
+          <caret line="357" column="5" lean-forward="false" selection-start-line="357" selection-start-column="5" selection-end-line="357" selection-end-column="5" />
+          <folding>
+            <marker date="1511344105116" expanded="true" signature="13992:13998" ph="{...}" />
+            <marker date="1511344105116" expanded="false" signature="14004:14336" ph="/**...*/" />
+            <marker date="1511344105116" expanded="false" signature="14379:14390" ph=" { " />
+            <marker date="1511344105116" expanded="false" signature="14403:14409" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/jsf31kochfractalfx/JSF31KochFractalFX.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="822">
-          <caret line="406" column="19" lean-forward="false" selection-start-line="406" selection-start-column="19" selection-end-line="406" selection-end-column="19" />
-          <folding>
-            <element signature="docComment;method#main#0;class#JSF31KochFractalFX#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="578">
+          <caret line="96" column="0" lean-forward="true" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
