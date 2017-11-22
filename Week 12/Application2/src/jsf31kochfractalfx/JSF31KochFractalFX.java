@@ -20,9 +20,10 @@ import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import threading.CalcTask;
-import threading.KochType;
+import depreciated.CalcTask;
+
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
@@ -46,7 +47,7 @@ public class JSF31KochFractalFX extends Application {
     private KochManager kochManager;
     
     // Current level of Koch fractal
-    private int currentLevel = 1;
+    private int currentLevel = 5;
     
     // Labels for level, nr edges, calculation time, and drawing time
     private Label labelLevel;
@@ -63,6 +64,9 @@ public class JSF31KochFractalFX extends Application {
     private Label progressLeft;
     private Label progressBottom;
     private Label progressRight;
+
+    private ProgressBar pb; //Temp value to allow for smoother code down the line
+    private Label lbl; //Temp value to allow for smoother code down the line
 
     // Koch panel and its size
     private Canvas kochPanel;
@@ -211,18 +215,11 @@ public class JSF31KochFractalFX extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent we) {
-                if (task != null) {
-                    task.cancel(true);
-                }
-                // do not forget to shutdown pool, otherwise the application
-                // wil not terminate!
-                kochManager.terminate();
+        primaryStage.setOnCloseRequest(we -> {
+            if (task != null) {
+                task.cancel(true);
             }
         });
-
     }
     
     public void clearKochPanel() {
@@ -231,42 +228,17 @@ public class JSF31KochFractalFX extends Application {
         gc.setFill(Color.BLACK);
         gc.fillRect(0.0,0.0,kpWidth,kpHeight);
     }
-    
-    public void drawEdge(Edge e) {
-        // Graphics
-        GraphicsContext gc = kochPanel.getGraphicsContext2D();
-        
-        // Adjust edge for zoom and drag
-        Edge e1 = edgeAfterZoomAndDrag(e);
-        
-        // Set line color
-        gc.setStroke(e1.color);
-        
-        // Set line width depending on level
-        if (currentLevel <= 3) {
-            gc.setLineWidth(2.0);
-        }
-        else if (currentLevel <=5 ) {
-            gc.setLineWidth(1.5);
-        }
-        else {
-            gc.setLineWidth(1.0);
-        }
-        
-        // Draw line
-        gc.strokeLine(e1.X1,e1.Y1,e1.X2,e1.Y2);
-    }
 
     public void drawEdge(Edge e, Color color) {
         // Graphics
         GraphicsContext gc = kochPanel.getGraphicsContext2D();
-
+        
         // Adjust edge for zoom and drag
         Edge e1 = edgeAfterZoomAndDrag(e);
-
+        
         // Set line color
         gc.setStroke(color);
-
+        
         // Set line width depending on level
         if (currentLevel <= 3) {
             gc.setLineWidth(2.0);
@@ -277,9 +249,15 @@ public class JSF31KochFractalFX extends Application {
         else {
             gc.setLineWidth(1.0);
         }
-
+        
         // Draw line
         gc.strokeLine(e1.X1,e1.Y1,e1.X2,e1.Y2);
+
+
+    }
+
+    public int getCurrentLevel() {
+        return this.currentLevel;
     }
     
     public void setTextNrEdges(String text) {
@@ -322,6 +300,7 @@ public class JSF31KochFractalFX extends Application {
     } 
 
     private void fitFractalButtonActionPerformed(ActionEvent event) {
+        clearKochPanel(); //Added
         resetZoom();
         kochManager.drawEdges();
     }
@@ -373,38 +352,10 @@ public class JSF31KochFractalFX extends Application {
                 e.color);
     }
 
-    public CalcTask createTask(KochType type) {
-        // generates the left edge
-        // If there's already a task running: first unbind properties
-        Label lbl = new Label();
-        ProgressBar pb = null; //= new ProgressBar();
-        switch(type){
-            case LEFT:
-                lbl = progressLeft;
-                pb = pbLeft;
-                break;
-            case RIGHT:
-                lbl = progressRight;
-                pb = pbRight;
-                break;
-            case BOTTOM:
-                lbl = progressBottom;
-                pb = pbBottom;
-                break;
-        }
-
-        if (task != null) {
-           // task.cancel();
-            pb.progressProperty().unbind();
-            lbl.textProperty().unbind();
-        }
-
-        // There's a new task that performs some work
-        task = new CalcTask(type, this.kochManager, currentLevel);
-        taskNumber++;
-
+    public void bindProperties(CalcTask task) {
+        findTaskType(task);
         // Reset progress
-        System.out.println("Binding " + type + " to progressbar " + pb.getId());
+        System.out.println("Binding " + task.getType() + " to progressbar " + pb.getId());
         pb.setProgress(0);
         try {
             Thread.sleep(75);
@@ -412,17 +363,38 @@ public class JSF31KochFractalFX extends Application {
             e.printStackTrace();
         }
         pb.progressProperty().bind(task.progressProperty());
-        System.out.println("Bound " + type + " to progressbar " + pb.getId());
+        System.out.println("Bound " + task.getType() + " to progressbar " + pb.getId());
 
         // Provides information about count
         lbl.textProperty().bind(task.messageProperty());
+    }
 
-//        try {
-//            Thread.sleep(10000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        return task;
+    public void unbindProperties(CalcTask task) {
+        findTaskType(task);
+        System.out.println("Unbinding " + task.getType() + " from progressbar " + pb.getId());
+        pb.progressProperty().unbind();
+        lbl.textProperty().unbind();
+        System.out.println("Unbound " + task.getType() + " from progressbar " + pb.getId());
+    }
+
+    private void findTaskType(CalcTask task) {
+        switch(task.getType()){
+            case LEFT:
+                System.out.println("Found LEFT TaskType");
+                lbl = progressLeft;
+                pb = pbLeft;
+                break;
+            case RIGHT:
+                System.out.println("Found RIGHT TaskType");
+                lbl = progressRight;
+                pb = pbRight;
+                break;
+            case BOTTOM:
+                System.out.println("Found BOTTOM TaskType");
+                lbl = progressBottom;
+                pb = pbBottom;
+                break;
+        }
     }
 
     /**

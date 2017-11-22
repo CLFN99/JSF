@@ -1,4 +1,4 @@
-package threading;
+package depreciated;
 
 public enum KochType {
     LEFT, RIGHT, BOTTOM
