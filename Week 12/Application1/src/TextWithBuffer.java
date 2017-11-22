@@ -50,10 +50,9 @@ public class TextWithBuffer extends Application implements Observer {
                     FileWriter writer = new FileWriter(level + ".json");
                     BufferedWriter out = new BufferedWriter(writer);
                     Gson gson = new Gson();
-                    for (Edge e : edges) {
-                        String jsonEdge = gson.toJson(e);
-                        out.write(jsonEdge);
-                    }
+                    String jsonString = gson.toJson(edges);
+                    writer.write(jsonString);
+
                     out.flush();
                     out.close();
                     System.out.println("done!");
