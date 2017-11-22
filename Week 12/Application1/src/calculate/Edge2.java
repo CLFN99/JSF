@@ -24,6 +24,9 @@ public class Edge2 implements Serializable{
         red = (int) (color.getRed() * 0xFF);
         blue = (int) (color.getBlue() * 0xFF) << 020;
         green = (int) (color.getGreen() * 0xFF) << 010;
+    }
 
+    public Color deserializeColor() {
+        return new Color(red, green, blue, 1);
     }
 }
