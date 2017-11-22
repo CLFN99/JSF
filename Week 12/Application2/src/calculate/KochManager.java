@@ -77,16 +77,17 @@ public class KochManager {
      */
     private List<Edge> bufferedDezerialize(int level) {
         Gson gson = new Gson();
-        List<Edge> data = new LinkedList<>();
+        LinkedList<Edge> data = new LinkedList<>();
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(
-                    level + ".json"));
+            System.out.println("Looking for " + level + ".json");
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("fractals/" + level + ".json"));
             String line;
             StringBuilder sb = new StringBuilder();
             while ((line = bufferedReader.readLine()) != null)
                 sb.append(line);
 
-            Type listType = new TypeToken<Collection<Edge>>(){}.getType();
+            Type listType = new TypeToken<LinkedList<Edge>>(){}.getType();
+            System.out.println(sb.toString());
             data = gson.fromJson(sb.toString(), listType);
         } catch (IOException iox) {
             iox.printStackTrace();
