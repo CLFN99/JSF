@@ -1,4 +1,5 @@
 import calculate.Edge;
+import calculate.Edge2;
 import calculate.KochFractal;
 import com.google.gson.Gson;
 import javafx.application.Application;
@@ -11,24 +12,24 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class BinNoBuffer extends Application implements Observer {
-    private static List<Edge> edges = new ArrayList<Edge>();
+    private List<Edge> edges = new ArrayList<>();
+    private List<Edge2> serializableEdges = new ArrayList<>();
 
     public static void main(String[] args) {
-
+        launch(args);
 
     }
 
-
     @Override
     public void update(Observable o, Object arg) {
-
+        edges.add((Edge) arg);
+        serializableEdges.add(new Edge2((Edge)arg));
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         KochFractal fractal = new KochFractal();
-        fractal.addObserver(this)
-        ;
+        fractal.addObserver(this);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int level = 0;
         System.out.print("Enter level:");
@@ -48,10 +49,12 @@ public class BinNoBuffer extends Application implements Observer {
             fractal.generateLeftEdge();
             fractal.generateRightEdge();
             try {
-                FileOutputStream fos = new FileOutputStream(level + ".bin");
-                ObjectOutputStream out = new ObjectOutputStream(fos);
-
-                //out.write(edges);
+                if (edges.size() == fractal.getNrOfEdges()) {
+                    FileOutputStream fos = new FileOutputStream(level + ".bin");
+                    ObjectOutputStream out = new ObjectOutputStream(fos);
+                    out.writeObject(serializableEdges);
+                    System.out.println("done!");
+                }
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -61,7 +64,5 @@ public class BinNoBuffer extends Application implements Observer {
 
 
         }
-
-
     }
 }

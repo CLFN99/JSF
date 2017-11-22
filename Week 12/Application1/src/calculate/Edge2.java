@@ -6,8 +6,11 @@ import java.io.Serializable;
 
 
 public class Edge2 implements Serializable{
+
     public double X1, Y1, X2, Y2;
-    Edge e;
+    public int red;
+    public int blue;
+    public int green;
 
     public Edge2(Edge e) {
         this.X1 = e.X1;
@@ -18,9 +21,9 @@ public class Edge2 implements Serializable{
     }
 
     public void serializeColor(Color color){
-        int red = (int) (color.getRed() * 0xFF);
-        int blue = (int) (color.getBlue() * 0xFF) << 020;
-        int green = (int) (color.getGreen() * 0xFF) << 010;
+        red = (int) (color.getRed() * 0xFF);
+        blue = (int) (color.getBlue() * 0xFF) << 020;
+        green = (int) (color.getGreen() * 0xFF) << 010;
 
     }
 }
