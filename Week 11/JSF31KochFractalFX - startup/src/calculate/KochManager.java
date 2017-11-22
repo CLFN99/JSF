@@ -37,6 +37,7 @@ public class KochManager {
     }
 
     public synchronized void changeLevel(int nxt) {
+        //Check level difference/tasks running and stop?
         edges.clear();
 
         time.setBegin("Edges are being generated..");
@@ -88,9 +89,10 @@ public class KochManager {
         //Add listener that will fetch the result when the task is completed
         task.setOnSucceeded(e -> {
             System.out.println("Retrieved result from " + task.getType());
-            System.out.println(task.getValue());
+            //System.out.println(task.getValue());
             mergeEdgeList(task.getValue());
             application.unbindProperties(task);
+            drawEdges();
         });
 
         //fractal.addObserver(this); //Depreciated? Replaced by the setOnSucceed event listener?

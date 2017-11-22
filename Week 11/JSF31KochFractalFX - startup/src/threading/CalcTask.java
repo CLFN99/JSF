@@ -24,7 +24,7 @@ public class CalcTask extends Task<List<Edge>> implements Observer {
         this.fractal = fractal;
         this.edges = new LinkedList<>();
 
-        //calculates the amount of edges for this side
+        //calculates the amount of edges for this side. Inaccurate?
         MAX = Math.pow(4, level);
     }
 
@@ -46,10 +46,6 @@ public class CalcTask extends Task<List<Edge>> implements Observer {
                 break;
             default:
                 break;
-        }
-        for(int i = 0; i <= MAX; i++){ //Absolute inaccurate representation of the calculating progress. All this is measuring how fast the processor can count to the MAX value.
-            updateProgress(i, MAX);
-            updateMessage("Nr edges: " + i);
         }
         return edges;
     }
@@ -116,5 +112,7 @@ public class CalcTask extends Task<List<Edge>> implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         edges.add((Edge) arg);
+        updateProgress(edges.size(), MAX);
+        updateMessage("Nr edges: " + edges.size());
     }
 }

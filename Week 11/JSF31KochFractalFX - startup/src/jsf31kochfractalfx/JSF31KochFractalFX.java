@@ -257,6 +257,8 @@ public class JSF31KochFractalFX extends Application implements Observer {
         
         // Draw line
         gc.strokeLine(e1.X1,e1.Y1,e1.X2,e1.Y2);
+
+
     }
 
     public int getCurrentLevel() {
@@ -303,6 +305,7 @@ public class JSF31KochFractalFX extends Application implements Observer {
     } 
 
     private void fitFractalButtonActionPerformed(ActionEvent event) {
+        clearKochPanel(); //Added
         resetZoom();
         kochManager.drawEdges();
     }
@@ -410,7 +413,13 @@ public class JSF31KochFractalFX extends Application implements Observer {
      */
     @Override
     public void update(Observable o, Object arg) {
+        //Runlater?
         drawEdge((Edge) arg, Color.BLANCHEDALMOND);
+//        try {
+//            Thread.sleep(10);
+//        } catch (InterruptedException e2) {
+//            e2.printStackTrace();
+//        }
     }
 
     /**
