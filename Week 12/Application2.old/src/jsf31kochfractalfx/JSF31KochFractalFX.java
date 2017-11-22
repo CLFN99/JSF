@@ -47,7 +47,7 @@ public class JSF31KochFractalFX extends Application {
     private KochManager kochManager;
     
     // Current level of Koch fractal
-    private int currentLevel = 9;
+    private int currentLevel = 8;
     
     // Labels for level, nr edges, calculation time, and drawing time
     private Label labelLevel;

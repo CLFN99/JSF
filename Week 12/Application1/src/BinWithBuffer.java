@@ -5,14 +5,11 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 public class BinWithBuffer extends Application implements Observer {
-    private List<Edge> edges = new ArrayList<>();
-    private List<Edge2> serializableEdges = new ArrayList<>();
+    private List<Edge> edges = new LinkedList<>();
+    private List<Edge2> serializableEdges = new LinkedList<>();
 
     public static void main(String[] args) {
         launch(args);
@@ -27,14 +24,12 @@ public class BinWithBuffer extends Application implements Observer {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        KochFractal fractal = new KochFractal();
-        fractal.addObserver(this);
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int level = 0;
+        int level = -1;
         System.out.print("Enter level:");
         try{
             level = Integer.parseInt(br.readLine());
-
         }catch(NumberFormatException nfe){
             System.err.println("Invalid Format!");
         }catch (IOException e) {
@@ -42,27 +37,40 @@ public class BinWithBuffer extends Application implements Observer {
         }
 
         //generate edges
-        if(level != 0){
-            fractal.setLevel(level);
-            fractal.generateBottomEdge();
-            fractal.generateLeftEdge();
-            fractal.generateRightEdge();
-            try {
-                if (edges.size() == fractal.getNrOfEdges()) {
-                    FileOutputStream fos = new FileOutputStream(level + ".bin");
-                    BufferedOutputStream buffer = new BufferedOutputStream(fos);
-                    ObjectOutputStream out = new ObjectOutputStream(buffer);
-                    out.writeObject(serializableEdges);
-                    System.out.println("done!");
-                }
+        if(level > 0){
+            generateEdges(level);
+        }
+        if (level == 0) {
+            System.out.println("Generating 10 levels");
+            for (int i = 1; i < 11; i++){
+                System.out.println("Generating level " + i);
+                generateEdges(i);
+            }
+        }
+    }
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+    private synchronized void generateEdges(int level) {
+        KochFractal fractal = new KochFractal();
+        fractal.addObserver(this);
+
+        fractal.setLevel(level);
+        fractal.generateBottomEdge();
+        fractal.generateLeftEdge();
+        fractal.generateRightEdge();
+        try {
+            if (edges.size() == fractal.getNrOfEdges()) {
+                FileOutputStream fos = new FileOutputStream(level + ".bin");
+                BufferedOutputStream buffer = new BufferedOutputStream(fos);
+                ObjectOutputStream out = new ObjectOutputStream(buffer);
+                out.writeObject(serializableEdges);
+                out.close();
+                System.out.println("done!");
             }
 
-
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
