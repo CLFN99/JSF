@@ -22,4 +22,8 @@ public class Edge {
         this.Y2 = Y2;
         this.color = color;
     }
+
+    public String toString(){
+        return "Begin point: (" + X1 + "," + Y1 + ") End point: (" + X2 + "," + Y2 + ") \n Color: " + color;
+    }
 }

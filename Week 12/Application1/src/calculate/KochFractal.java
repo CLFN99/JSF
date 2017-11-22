@@ -19,13 +19,14 @@ public class KochFractal extends Observable {
     private float hue;          // Hue value of color for next edge
     private boolean cancelled;  // Flag to indicate that calculation has been cancelled 
 
-    private void drawKochEdge(double ax, double ay, double bx, double by, int n) {
+    private Edge drawKochEdge(double ax, double ay, double bx, double by, int n) {
         if (!cancelled) {
             if (n == 1) {
                 hue = hue + 1.0f / nrOfEdges;
                 Edge e = new Edge(ax, ay, bx, by, Color.hsb(hue*360.0, 1.0, 1.0));
                 this.setChanged();
                 this.notifyObservers(e);
+                return e;
             } else {
                 double angle = Math.PI / 3.0 + Math.atan2(by - ay, bx - ax);
                 double distabdiv3 = Math.sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay)) / 3;
@@ -39,27 +40,28 @@ public class KochFractal extends Observable {
                 drawKochEdge((midabx + bx) / 2, (midaby + by) / 2, bx, by, n - 1);
             }
         }
+        return  null;
     }
 
-    public Boolean generateLeftEdge() {
+    public Edge generateLeftEdge() {
         hue = 0f;
         cancelled = false;
-        drawKochEdge(0.5, 0.0, (1 - Math.sqrt(3.0) / 2.0) / 2, 0.75, level);
-        return true;
+        Edge e = drawKochEdge(0.5, 0.0, (1 - Math.sqrt(3.0) / 2.0) / 2, 0.75, level);
+        return e;
     }
 
-    public Boolean generateBottomEdge() {
+    public Edge generateBottomEdge() {
         hue = 1f / 3f;
         cancelled = false;
-        drawKochEdge((1 - Math.sqrt(3.0) / 2.0) / 2, 0.75, (1 + Math.sqrt(3.0) / 2.0) / 2, 0.75, level);
-        return true;
+        Edge e = drawKochEdge((1 - Math.sqrt(3.0) / 2.0) / 2, 0.75, (1 + Math.sqrt(3.0) / 2.0) / 2, 0.75, level);
+        return e;
     }
 
-    public Boolean generateRightEdge() {
+    public Edge generateRightEdge() {
         hue = 2f / 3f;
         cancelled = false;
-        drawKochEdge((1 + Math.sqrt(3.0) / 2.0) / 2, 0.75, 0.5, 0.0, level);
-        return true;
+        Edge e = drawKochEdge((1 + Math.sqrt(3.0) / 2.0) / 2, 0.75, 0.5, 0.0, level);
+        return e;
     }
     
     public void cancel() {
