@@ -49,11 +49,11 @@ private static List<Edge> edges = new ArrayList<Edge>();
             try {
                 if (edges.size() == fractal.getNrOfEdges()) {
                     FileWriter writer = new FileWriter(level + ".json");
+
                     Gson gson = new Gson();
-                    for (Edge e : edges) {
-                        String jsonEdge = gson.toJson(e);
-                        writer.write(jsonEdge);
-                    }
+                    String jsonString = gson.toJson(edges);
+                    writer.write(jsonString);
+
                     writer.flush();
                     writer.close();
                     System.out.println("done!");
