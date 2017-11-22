@@ -27,9 +27,9 @@ public class BinNoBuffer {
         //generate edges
         if(level != 0){
             fractal.setLevel(level);
-            Edge bottomEdge = fractal.generateBottomEdge();
-            Edge leftEdge = fractal.generateLeftEdge();
-            Edge rightEdge = fractal.generateRightEdge();
+            fractal.generateBottomEdge();
+            fractal.generateLeftEdge();
+            fractal.generateRightEdge();
 
 
         }

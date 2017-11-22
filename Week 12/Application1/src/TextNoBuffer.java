@@ -1,17 +1,32 @@
 import calculate.Edge;
 import calculate.KochFractal;
+import com.google.gson.Gson;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class TextNoBuffer {
+public class TextNoBuffer extends Application implements Observer  {
 private static List<Edge> edges = new ArrayList<Edge>();
 
+
     public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        edges.add((Edge)arg);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
         KochFractal fractal = new KochFractal();
+        fractal.addObserver(this);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int level = 0;
         System.out.print("Enter level:");
@@ -25,23 +40,28 @@ private static List<Edge> edges = new ArrayList<Edge>();
         }
 
         //generate edges
-        if(level != 0){
+        if(level != 0) {
             fractal.setLevel(level);
-            edges.add(fractal.generateBottomEdge());
-            edges.add(fractal.generateLeftEdge());
-            edges.add(fractal.generateRightEdge());
+            fractal.generateBottomEdge();
+            fractal.generateLeftEdge();
+            fractal.generateRightEdge();
 
             try {
-                FileWriter writer = new FileWriter("");
-                for(Edge e : edges){
-                    writer.write(e.toString());
+                if (edges.size() == fractal.getNrOfEdges()) {
+                    FileWriter writer = new FileWriter(level + ".json");
+                    Gson gson = new Gson();
+                    for (Edge e : edges) {
+                        String jsonEdge = gson.toJson(e);
+                        writer.write(jsonEdge);
+                    }
+                    writer.flush();
+                    writer.close();
+                    System.out.println("done!");
                 }
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
-
 }
