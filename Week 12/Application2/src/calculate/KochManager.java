@@ -9,10 +9,7 @@ import depreciated.CalcTask;
 import depreciated.KochType;
 import timeutil.TimeStamp;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -44,7 +41,9 @@ public class KochManager {
     public synchronized void changeLevel(int nxt) {
         //Should try to load the file of the given level into the edges list.
         //edges = deserialize(nxt);
-        edges = bufferedDezerialize(nxt);
+        //edges = bufferedDezerialize(nxt);
+        edges = readEdgeStream(nxt);
+        //edges = bufferedReadEdgeStream(nxt);
         if (edges.size() > 0)
             drawEdges();
         else
@@ -60,7 +59,7 @@ public class KochManager {
         Gson gson = new Gson();
         List<Edge> data = new LinkedList<>();
         try {
-            File edges = new File("/fractals/" + level + ".json"); //The json file that should be read
+            File edges = new File("fractals/" + level + ".json"); //The json file that should be read
             Type listType = new TypeToken<LinkedList<Edge>>() {}.getType(); //The type of list that the json array is in
             JsonReader reader = new JsonReader(new FileReader(edges)); //The reader that should be used
             data = gson.fromJson(reader, listType); //The actual reading of the json file
@@ -93,6 +92,50 @@ public class KochManager {
             iox.printStackTrace();
         }
         return data;
+    }
+
+    /**
+     * Magic that will read the bin files
+     * @return The list of edges inside the bin files
+     */
+    private LinkedList<Edge> readEdgeStream(int level) {
+        LinkedList<Edge> returnvalue = null;
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("fractals/" + level + ".bin"))) {
+
+            returnvalue = convertEdgeList((LinkedList<Edge2>) in.readObject());
+
+        } catch (IOException | ClassNotFoundException exception) {
+            exception.printStackTrace();
+        }
+        return returnvalue;
+    }
+
+    /**
+     * Magic that will read the bin files with a buffer
+     * @return The list of edges inside the bin files
+     */
+    private LinkedList<Edge> bufferedReadEdgeStream(int level) {
+        LinkedList<Edge> returnvalue = null;
+        try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("fractals/" + level + ".bin")))) {
+
+            returnvalue = convertEdgeList((LinkedList<Edge2>) in.readObject());
+
+        } catch (IOException | ClassNotFoundException exception) {
+            exception.printStackTrace();
+        }
+        return returnvalue;
+    }
+
+    /**
+     * Converts the custom edge objects (to allow for color serialization) back to Edge objects
+     * @return
+     */
+    private LinkedList<Edge> convertEdgeList(LinkedList<Edge2> edges) {
+        LinkedList<Edge> returnvalue = null;
+        for(Edge2 e : edges) {
+            returnvalue.add(new Edge(e.X1, e.Y1, e.X2, e.Y2, e.deserializeColor()));
+        }
+        return returnvalue;
     }
 
     public void drawEdges() {

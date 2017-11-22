@@ -47,7 +47,7 @@ public class JSF31KochFractalFX extends Application {
     private KochManager kochManager;
     
     // Current level of Koch fractal
-    private int currentLevel = 5;
+    private int currentLevel = 9;
     
     // Labels for level, nr edges, calculation time, and drawing time
     private Label labelLevel;
@@ -150,21 +150,23 @@ public class JSF31KochFractalFX extends Application {
         Label lblProgress1 = new Label("Progress left:");
         Label lblProgress2 = new Label("Progress right:");
         Label lblProgress3 = new Label("Progress bottom:");
-        grid.add(lblProgress1, 0, 7);
-        grid.add(lblProgress2, 0, 8);
-        grid.add(lblProgress3, 0, 9);
+//        grid.add(lblProgress1, 0, 7);
+//        grid.add(lblProgress2, 0, 8);
+//        grid.add(lblProgress3, 0, 9);
 
         // Adding progress bars
         pbLeft = new ProgressBar();
         pbLeft.setId("pbLeft");
-        grid.add(pbLeft, 2, 7);
+
         pbRight = new ProgressBar();
         pbRight.setId("pbRight");
-        grid.add(pbRight, 2, 8);
+
         pbBottom = new ProgressBar();
         pbBottom.setId("pbBottom");
-        grid.add(pbBottom,2, 9);
 
+//        grid.add(pbLeft, 2, 7);
+//        grid.add(pbRight, 2, 8);
+//        grid.add(pbBottom,2, 9);
 
         // Adding progress labels
         progressLeft = new Label();
