@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package jsf31kochfractalfx;
 
 import calculate.*;
@@ -22,9 +18,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import depreciated.CalcTask;
 
-import java.util.Observable;
-import java.util.Observer;
-
 /**
  *
  * @author Nico Kuijpers
@@ -41,14 +34,13 @@ public class JSF31KochFractalFX extends Application {
     private double lastDragY = 0.0;
 
     private int taskNumber;
-    private CalcTask task;
     // Koch manager
     // TO DO: Create class KochManager in package calculate
     private KochManager kochManager;
     
     // Current level of Koch fractal
-    private int currentLevel = 9;
-    
+    private int currentLevel = 8;
+
     // Labels for level, nr edges, calculation time, and drawing time
     private Label labelLevel;
     private Label labelNrEdges;
@@ -218,9 +210,7 @@ public class JSF31KochFractalFX extends Application {
         primaryStage.show();
 
         primaryStage.setOnCloseRequest(we -> {
-            if (task != null) {
-                task.cancel(true);
-            }
+
         });
     }
     
