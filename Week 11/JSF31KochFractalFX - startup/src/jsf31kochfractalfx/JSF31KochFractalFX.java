@@ -31,7 +31,10 @@ import java.util.Observer;
  *
  * @author Nico Kuijpers
  */
+<<<<<<< HEAD
 public class JSF31KochFractalFX  extends Application implements Observer {
+=======
+>>>>>>> 2e09ef31dc69d357b144c6603f7d5fbe8d44398f
     
     // Zoom and drag
     private double zoomTranslateX = 0.0;
@@ -214,18 +217,8 @@ public class JSF31KochFractalFX  extends Application implements Observer {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent we) {
-                if (task != null) {
-                    task.cancel(true);
-                }
-                // do not forget to shutdown pool, otherwise the application
-                // wil not terminate!
-                kochManager.terminate();
             }
         });
-
     }
     
     public void clearKochPanel() {
@@ -234,8 +227,7 @@ public class JSF31KochFractalFX  extends Application implements Observer {
         gc.setFill(Color.BLACK);
         gc.fillRect(0.0,0.0,kpWidth,kpHeight);
     }
-    
-    public void drawEdge(Edge e) {
+
         // Graphics
         GraphicsContext gc = kochPanel.getGraphicsContext2D();
         
@@ -243,7 +235,6 @@ public class JSF31KochFractalFX  extends Application implements Observer {
         Edge e1 = edgeAfterZoomAndDrag(e);
         
         // Set line color
-        gc.setStroke(e1.color);
         
         // Set line width depending on level
         if (currentLevel <= 3) {
@@ -280,6 +271,7 @@ public class JSF31KochFractalFX  extends Application implements Observer {
         else {
             gc.setLineWidth(1.0);
         }
+    }
 
         // Draw line
         gc.strokeLine(e1.X1,e1.Y1,e1.X2,e1.Y2);
@@ -382,6 +374,7 @@ public class JSF31KochFractalFX  extends Application implements Observer {
         Label lbl = new Label();
         ProgressBar pb = null; //= new ProgressBar();
         switch(type){
+
             case LEFT:
                 lbl = progressLeft;
                 pb = pbLeft;
@@ -396,6 +389,7 @@ public class JSF31KochFractalFX  extends Application implements Observer {
                 break;
         }
 
+<<<<<<< HEAD
         if (task != null) {
            // task.cancel();
             pb.progressProperty().unbind();
@@ -421,6 +415,8 @@ public class JSF31KochFractalFX  extends Application implements Observer {
         lbl.textProperty().bind(task.messageProperty());
 
         return task;
+=======
+>>>>>>> 2e09ef31dc69d357b144c6603f7d5fbe8d44398f
     }
 
     /**

@@ -12,10 +12,8 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public class  CalcTask extends Task<List<Edge>> implements Observer {
 
     private KochType type = null;
-    private KochFractal fractal;
     private double MAX;
     private List<Edge> edges;
 
@@ -29,10 +27,13 @@ public class  CalcTask extends Task<List<Edge>> implements Observer {
         MAX = Math.pow(4, level);
     }
 
+<<<<<<< HEAD
     @Override
     public void update(Observable o, Object arg) {
         //arg = the generated edge. This should be added to an array, which should be pushed back to the manager in a synchronized way
         edges.add((Edge)arg);
+=======
+>>>>>>> 2e09ef31dc69d357b144c6603f7d5fbe8d44398f
     }
 
     @Override

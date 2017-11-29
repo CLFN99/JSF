@@ -23,6 +23,7 @@ public class KochManager {
     private TimeStamp time;
     private List<String> calcTimes;
     private final ExecutorService pool = Executors.newFixedThreadPool(3);
+    //private CalcTask task;
 
     public KochManager(JSF31KochFractalFX application) {
         this.application = application;
@@ -39,10 +40,10 @@ public class KochManager {
     }
 
     public synchronized void changeLevel(int nxt) {
-        //Synchronized
         edges.clear();
 
         time.setBegin("Edges are being generated..");
+<<<<<<< HEAD
         CalcTask taskLeft = application.createTask(KochType.LEFT);
         CalcTask taskRight = application.createTask(KochType.RIGHT);
         CalcTask taskBottom = application.createTask(KochType.BOTTOM);
@@ -68,6 +69,8 @@ public class KochManager {
             application.requestDrawEdges();
         }
 
+=======
+>>>>>>> 2e09ef31dc69d357b144c6603f7d5fbe8d44398f
     }
 
     public void drawEdges() {
@@ -77,8 +80,8 @@ public class KochManager {
         time.setBegin("Edges are being drawn..");
 
         for (Edge e:edges) {
-            application.drawEdge(e);
         }
+
         time.setEnd("Fractal drawing done!");
 
 
