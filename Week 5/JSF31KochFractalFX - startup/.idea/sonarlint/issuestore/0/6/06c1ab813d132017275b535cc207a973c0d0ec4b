@@ -1,9 +1,0 @@
-
-fsquid:S2134"EStop extending the Thread class as the "run" method is not overridden(žÿ’Ÿûÿÿÿÿ8¿˜ð›î+
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(®ÃÂÎøÿÿÿÿ8¿˜ð›î+
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¾Õýÿÿÿÿ8¿˜ð›î+
-M
-squid:S106"9Replace this use of System.out or System.err by a logger.(¦Œ‰¢
-asquid:S2134"EStop extending the Thread class as the "run" method is not overridden(šÌ¢á8¿˜ð›î+
-asquid:S2134"EStop extending the Thread class as the "run" method is not overridden(üÊë¹8¿˜ð›î+
