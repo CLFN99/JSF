@@ -33,6 +33,7 @@ public class  CalcTask extends Task<List<Edge>> implements Observer {
     public void update(Observable o, Object arg) {
         //arg = the generated edge. This should be added to an array, which should be pushed back to the manager in a synchronized way
         edges.add((Edge)arg);
+       
     }
 
     @Override

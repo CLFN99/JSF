@@ -51,9 +51,9 @@ public class KochManager {
         pool.submit(taskBottom);
 
         try {
-//            for(Edge e : taskLeft.get()){
-//                application.drawEdge(e, Color.WHITE);
-//            }
+            for(Edge e : taskLeft.get()){
+                application.drawEdge(e, Color.WHITE);
+            }
             mergeEdgeList(taskLeft.get());
             mergeEdgeList(taskRight.get());
             mergeEdgeList(taskBottom.get());
@@ -64,9 +64,10 @@ public class KochManager {
         }
 
         time.setEnd("Fractal generation done!");
-        if(taskBottom.isDone() && taskLeft.isDone() && taskRight.isDone()){
-            application.requestDrawEdges();
-        }
+        application.requestDrawEdges();
+    }
+
+    public void drawSingleEdge(Edge e){
 
     }
 

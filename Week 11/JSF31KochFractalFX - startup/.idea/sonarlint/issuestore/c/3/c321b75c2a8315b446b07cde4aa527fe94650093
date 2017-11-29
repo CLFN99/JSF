@@ -1,11 +1,0 @@
-
-R
-squid:S106"9Replace this use of System.out or System.err by a logger.(úüóËşÿÿÿÿ
-=squid:S1185"(Remove this method to simply inherit it.(ÑÂÂ“
-<squid:S1185"(Remove this method to simply inherit it.(¿
-=squid:S1185"(Remove this method to simply inherit it.(½ÓÖ
-=squid:S1185"(Remove this method to simply inherit it.(Ä‹Ôà
-=squid:S1185"(Remove this method to simply inherit it.(æ˜»õ
-dsquid:S00116"NRename this field "MAX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–ôÏ
-_squid:UselessImportCheck"8Remove this unused import 'javafx.application.Platform'.(§“óùÿÿÿÿ
-Wsquid:UselessImportCheck"5Remove this unused import 'javafx.scene.paint.Color'.(Ïî£à

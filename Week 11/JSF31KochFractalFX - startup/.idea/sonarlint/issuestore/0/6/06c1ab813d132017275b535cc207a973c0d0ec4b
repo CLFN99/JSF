@@ -1,17 +1,0 @@
-
-`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ù»ð
-M
-squid:S106"9Replace this use of System.out or System.err by a logger.(¦Œ‰¢
-R
-squid:S106"9Replace this use of System.out or System.err by a logger.(®ÃÂÎøÿÿÿÿ
-R
-squid:S106"9Replace this use of System.out or System.err by a logger.(Ú¢À¹þÿÿÿÿ
-?squid:S1172"*Remove this unused method parameter "nxt".(ÃîÊ€
-[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
-^squid:S2147"DCombine this catch with the one at line 60, which has the same body.(åþŒóùÿÿÿÿ
-]squid:UselessImportCheck"6Remove this unused import 'threading.ManagerRunnable'.(úâÈ¼ýÿÿÿÿ
-Tsquid:UselessImportCheck"3Remove this unused import 'javafx.concurrent.Task'.(Úåôg
-_squid:UselessImportCheck"8Remove this unused import 'java.util.concurrent.Future'.(á¬øíýÿÿÿÿ
-Zsquid:UselessImportCheck"3Remove this unused import 'threading.KochCallable'.(ïèÝûÿÿÿÿ
-=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
-=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
