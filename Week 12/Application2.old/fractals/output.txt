@@ -1,0 +1,169 @@
+Level: 1
+From 'Reading JSON' till 'Done reading and deserializing JSON' is 15 mSec.
+
+----
+Looking for 1.json
+From 'Buffered reading JSON' till 'Done reading JSON, starting deserialization' is 0 mSec.
+From 'Done reading JSON, starting deserialization' till 'Done deserializing' is 3 mSec.
+
+----
+From 'Reading bin' till 'Completed reading and converting bin' is 10 mSec.
+
+----
+From 'Buffered reading bin' till 'Completed reading and converting bin' is 1 mSec.
+
+----
+From 'Edges are being drawn...' till 'Fractal drawing done!' is 1 mSec.
+
+Level: 2
+From 'Reading JSON' till 'Done reading and deserializing JSON' is 7 mSec.
+
+----
+Looking for 2.json
+From 'Buffered reading JSON' till 'Done reading JSON, starting deserialization' is 0 mSec.
+From 'Done reading JSON, starting deserialization' till 'Done deserializing' is 5 mSec.
+
+----
+From 'Reading bin' till 'Completed reading and converting bin' is 1 mSec.
+
+----
+From 'Buffered reading bin' till 'Completed reading and converting bin' is 1 mSec.
+
+----
+From 'Edges are being drawn...' till 'Fractal drawing done!' is 0 mSec.
+
+Level: 3
+From 'Reading JSON' till 'Done reading and deserializing JSON' is 23 mSec.
+
+----
+Looking for 3.json
+From 'Buffered reading JSON' till 'Done reading JSON, starting deserialization' is 0 mSec.
+From 'Done reading JSON, starting deserialization' till 'Done deserializing' is 13 mSec.
+
+----
+From 'Reading bin' till 'Completed reading and converting bin' is 4 mSec.
+
+----
+From 'Buffered reading bin' till 'Completed reading and converting bin' is 2 mSec.
+
+----
+From 'Edges are being drawn...' till 'Fractal drawing done!' is 1 mSec.
+
+Level: 4
+From 'Reading JSON' till 'Done reading and deserializing JSON' is 19 mSec.
+
+----
+Looking for 4.json
+From 'Buffered reading JSON' till 'Done reading JSON, starting deserialization' is 1 mSec.
+From 'Done reading JSON, starting deserialization' till 'Done deserializing' is 11 mSec.
+
+----
+From 'Reading bin' till 'Completed reading and converting bin' is 14 mSec.
+
+----
+From 'Buffered reading bin' till 'Completed reading and converting bin' is 6 mSec.
+
+----
+From 'Edges are being drawn...' till 'Fractal drawing done!' is 2 mSec.
+
+Level: 5
+From 'Reading JSON' till 'Done reading and deserializing JSON' is 31 mSec.
+
+----
+Looking for 5.json
+From 'Buffered reading JSON' till 'Done reading JSON, starting deserialization' is 6 mSec.
+From 'Done reading JSON, starting deserialization' till 'Done deserializing' is 17 mSec.
+
+----
+From 'Reading bin' till 'Completed reading and converting bin' is 18 mSec.
+
+----
+From 'Buffered reading bin' till 'Completed reading and converting bin' is 3 mSec.
+
+----
+From 'Edges are being drawn...' till 'Fractal drawing done!' is 3 mSec.
+
+Level: 6
+From 'Reading JSON' till 'Done reading and deserializing JSON' is 51 mSec.
+
+----
+Looking for 6.json
+From 'Buffered reading JSON' till 'Done reading JSON, starting deserialization' is 5 mSec.
+From 'Done reading JSON, starting deserialization' till 'Done deserializing' is 25 mSec.
+
+----
+From 'Reading bin' till 'Completed reading and converting bin' is 42 mSec.
+
+----
+From 'Buffered reading bin' till 'Completed reading and converting bin' is 4 mSec.
+
+----
+From 'Edges are being drawn...' till 'Fractal drawing done!' is 4 mSec.
+
+Level: 7
+From 'Reading JSON' till 'Done reading and deserializing JSON' is 103 mSec.
+
+----
+Looking for 7.json
+From 'Buffered reading JSON' till 'Done reading JSON, starting deserialization' is 25 mSec.
+From 'Done reading JSON, starting deserialization' till 'Done deserializing' is 71 mSec.
+
+----
+From 'Reading bin' till 'Completed reading and converting bin' is 156 mSec.
+
+----
+From 'Buffered reading bin' till 'Completed reading and converting bin' is 8 mSec.
+
+----
+From 'Edges are being drawn...' till 'Fractal drawing done!' is 8 mSec.
+
+Level: 8
+From 'Reading JSON' till 'Done reading and deserializing JSON' is 329 mSec.
+
+----
+Looking for 8.json
+From 'Buffered reading JSON' till 'Done reading JSON, starting deserialization' is 38 mSec.
+From 'Done reading JSON, starting deserialization' till 'Done deserializing' is 320 mSec.
+
+----
+From 'Reading bin' till 'Completed reading and converting bin' is 703 mSec.
+
+----
+From 'Buffered reading bin' till 'Completed reading and converting bin' is 36 mSec.
+
+----
+From 'Edges are being drawn...' till 'Fractal drawing done!' is 41 mSec.
+
+Level: 9
+From 'Reading JSON' till 'Done reading and deserializing JSON' is 1220 mSec.
+
+----
+Looking for 9.json
+From 'Buffered reading JSON' till 'Done reading JSON, starting deserialization' is 210 mSec.
+From 'Done reading JSON, starting deserialization' till 'Done deserializing' is 1102 mSec.
+
+----
+From 'Reading bin' till 'Completed reading and converting bin' is 2589 mSec.
+
+----
+From 'Buffered reading bin' till 'Completed reading and converting bin' is 155 mSec.
+
+----
+From 'Edges are being drawn...' till 'Fractal drawing done!' is 746 mSec.
+
+Level: 10
+From 'Reading JSON' till 'Done reading and deserializing JSON' is 4974 mSec.
+
+----
+Looking for 10.json
+From 'Buffered reading JSON' till 'Done reading JSON, starting deserialization' is 1326 mSec.
+From 'Done reading JSON, starting deserialization' till 'Done deserializing' is 4484 mSec.
+
+----
+From 'Reading bin' till 'Completed reading and converting bin' is 11499 mSec.
+
+----
+From 'Buffered reading bin' till 'Completed reading and converting bin' is 472 mSec.
+
+----
+From 'Edges are being drawn...' till 'Fractal drawing done!' is 9420 mSec.
