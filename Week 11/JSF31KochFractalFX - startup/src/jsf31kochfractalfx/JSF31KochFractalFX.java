@@ -24,11 +24,14 @@ import javafx.stage.WindowEvent;
 import threading.CalcTask;
 import threading.KochType;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  *
  * @author Nico Kuijpers
  */
-public class JSF31KochFractalFX extends Application {
+public class JSF31KochFractalFX  extends Application implements Observer {
     
     // Zoom and drag
     private double zoomTranslateX = 0.0;
@@ -417,11 +420,6 @@ public class JSF31KochFractalFX extends Application {
         // Provides information about count
         lbl.textProperty().bind(task.messageProperty());
 
-//        try {
-//            Thread.sleep(10000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         return task;
     }
 
@@ -435,5 +433,12 @@ public class JSF31KochFractalFX extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        //arg = edge that was generated
+        //to do
+        drawEdge((Edge)arg, Color.WHITE);
     }
 }

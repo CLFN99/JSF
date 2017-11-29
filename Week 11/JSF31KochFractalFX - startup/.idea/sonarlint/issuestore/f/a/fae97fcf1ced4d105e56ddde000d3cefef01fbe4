@@ -1,0 +1,25 @@
+
+bsquid:S1192"HDefine a constant instead of duplicating this literal "Level: " 3 times.(µ‚”éıÿÿÿÿ
+psquid:S1450"[Remove the "labelNrEdges" field and declare it as a local variable in the relevant methods.(Ÿà†ƒ
+rsquid:S1450"XRemove the "labelCalc" field and declare it as a local variable in the relevant methods.(“ü³Õùÿÿÿÿ
+rsquid:S1450"XRemove the "labelDraw" field and declare it as a local variable in the relevant methods.(ô°Œúÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ş›Ï‘
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(şÔ½×úÿÿÿÿ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(şÔ½×úÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÂÜ™õ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¼Ãíüÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(â ¬Æşÿÿÿÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(·•Ï²
+Fsquid:S1172",Remove this unused method parameter "event".(Èâë†şÿÿÿÿ
+@squid:S1172",Remove this unused method parameter "event".(‚†¸E
+Fsquid:S1172",Remove this unused method parameter "event".(ÿ¦ÅŸøÿÿÿÿ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+;squid:S1170"!Make this final field static too.(·›Éîüÿÿÿÿ
+;squid:S1170"!Make this final field static too.(›šĞşÿÿÿÿ
+Zsquid:S2259"@A "NullPointerException" could be thrown; "pb" is nullable here.(â ¬Æşÿÿÿÿ
+Zsquid:S2259"@A "NullPointerException" could be thrown; "pb" is nullable here.( ¿Ï„ÿÿÿÿÿ
+Bsquid:S1604"(Make this anonymous inner class a lambda(ôâŠûıÿÿÿÿ
+rsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(İ¸³˜ûÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
