@@ -6,14 +6,11 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 public class BinNoBuffer extends Application implements Observer {
-    private List<Edge> edges = new ArrayList<>();
-    private List<Edge2> serializableEdges = new ArrayList<>();
+    private List<Edge> edges = new LinkedList<>();
+    private List<Edge2> serializableEdges = new LinkedList<>();
 
     public static void main(String[] args) {
         launch(args);

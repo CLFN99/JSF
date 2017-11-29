@@ -1,8 +1,8 @@
 package calculate;
 
-import javafx.scene.paint.Color;
+        import javafx.scene.paint.Color;
 
-import java.io.Serializable;
+        import java.io.Serializable;
 
 
 public class Edge2 implements Serializable{

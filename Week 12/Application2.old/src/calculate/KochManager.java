@@ -40,15 +40,15 @@ public class KochManager {
 
     public synchronized void changeLevel(int nxt) {
         //Should try to load the file of the given level into the edges list.
-        System.out.println("Level: " + nxt);
-        edges = deserialize(nxt); //JSON
-        System.out.println("----");
-        edges = bufferedDeserialize(nxt); //JSON buffered
-        System.out.println("----");
+        //System.out.println("Level: " + nxt);
+        //edges = deserialize(nxt); //JSON
+      //  System.out.println("----");
+      //  edges = bufferedDeserialize(nxt); //JSON buffered
+        System.out.println("Level " + nxt);
         edges = readEdgeStream(nxt); //BIN
         System.out.println("----");
-        edges = bufferedReadEdgeStream(nxt); //BIN buffered
-        System.out.println("----");
+      //  edges = bufferedReadEdgeStream(nxt); //BIN buffered
+       // System.out.println("----");
 
 
         if (edges.size() > 0)

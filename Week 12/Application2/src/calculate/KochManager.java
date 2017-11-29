@@ -101,9 +101,11 @@ public class KochManager {
     private LinkedList<Edge> readEdgeStream(int level) {
         LinkedList<Edge> returnvalue = null;
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("fractals/" + level + ".bin"))) {
-
+            long startTime = System.currentTimeMillis();
             returnvalue = convertEdgeList((LinkedList<Edge2>) in.readObject());
-
+            long endTime = System.currentTimeMillis();
+            long duration = (endTime - startTime);
+            System.out.println(duration);
         } catch (IOException | ClassNotFoundException exception) {
             exception.printStackTrace();
         }
@@ -131,10 +133,12 @@ public class KochManager {
      * @return
      */
     private LinkedList<Edge> convertEdgeList(LinkedList<Edge2> edges) {
-        LinkedList<Edge> returnvalue = null;
+        LinkedList<Edge> returnvalue = new LinkedList<>();
+
         for(Edge2 e : edges) {
             returnvalue.add(new Edge(e.X1, e.Y1, e.X2, e.Y2, e.deserializeColor()));
         }
+
         return returnvalue;
     }
 
