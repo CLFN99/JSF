@@ -48,6 +48,7 @@ public class KochManager {
         //edges = bufferedDezerialize(nxt);
         //edges = readEdgeStream(nxt);
         //edges = bufferedReadEdgeStream(nxt);
+
         edges = bufferedRandomAccessFile(nxt);
         if (edges.size() > 0)
             drawEdges();
@@ -152,6 +153,7 @@ public class KochManager {
 
     //https://simplesassim.wordpress.com/2014/06/18/how-to-read-an-object-from-a-memory-mapped-file-with-oracle-jdk/
     private LinkedList<Edge> bufferedRandomAccessFile(int level) {
+        long startTime = System.currentTimeMillis();
         try {
             final RandomAccessFile f = new RandomAccessFile("fractals/" + level + "rnd.bin", "r");
             final FileChannel fc = f.getChannel();
@@ -173,6 +175,11 @@ public class KochManager {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }
+        finally{
+            long endTime = System.currentTimeMillis();
+            long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+            System.out.println(duration);
         }
         return null;
     }
