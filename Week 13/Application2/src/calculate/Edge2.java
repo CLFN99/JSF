@@ -6,11 +6,10 @@ import java.io.Serializable;
 
 
 public class Edge2 implements Serializable{
+    private static final long serialVersionUID = -4982361154563378312L;
 
     public double X1, Y1, X2, Y2;
-    public int red;
-    public int blue;
-    public int green;
+    public double hue;
 
     public Edge2(Edge e) {
         this.X1 = e.X1;
@@ -21,12 +20,10 @@ public class Edge2 implements Serializable{
     }
 
     public void serializeColor(Color color){
-        red = (int) (color.getRed() * 0xFF);
-        blue = (int) (color.getBlue() * 0xFF) << 020;
-        green = (int) (color.getGreen() * 0xFF) << 010;
+        hue = color.getHue();
     }
 
     public Color deserializeColor() {
-        return new Color(red, green, blue, 1);
+        return Color.hsb(hue, 1, 1);
     }
 }

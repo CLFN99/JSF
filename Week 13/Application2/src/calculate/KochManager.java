@@ -11,9 +11,13 @@ import timeutil.TimeStamp;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static java.nio.channels.FileChannel.MapMode.READ_ONLY;
 
 public class KochManager {
 
@@ -32,7 +36,7 @@ public class KochManager {
         calcTimes = new ArrayList<>();
     }
 
-    public synchronized void mergeEdgeList (List<Edge> e) {
+    public synchronized void mergeEdgeList(List<Edge> e) {
         System.out.println("Pre merge: " + edges.size());
         edges.addAll(e);
         System.out.println("Post merge: " + edges.size());
@@ -42,8 +46,9 @@ public class KochManager {
         //Should try to load the file of the given level into the edges list.
         //edges = deserialize(nxt);
         //edges = bufferedDezerialize(nxt);
-        edges = readEdgeStream(nxt);
+        //edges = readEdgeStream(nxt);
         //edges = bufferedReadEdgeStream(nxt);
+        edges = bufferedRandomAccessFile(nxt);
         if (edges.size() > 0)
             drawEdges();
         else
@@ -52,6 +57,7 @@ public class KochManager {
 
     /**
      * Unbuffered deserialization
+     *
      * @param level The level that will be deserialized
      * @return Array of edges found
      */
@@ -60,7 +66,8 @@ public class KochManager {
         List<Edge> data = new LinkedList<>();
         try {
             File edges = new File("fractals/" + level + ".json"); //The json file that should be read
-            Type listType = new TypeToken<LinkedList<Edge>>() {}.getType(); //The type of list that the json array is in
+            Type listType = new TypeToken<LinkedList<Edge>>() {
+            }.getType(); //The type of list that the json array is in
             JsonReader reader = new JsonReader(new FileReader(edges)); //The reader that should be used
             data = gson.fromJson(reader, listType); //The actual reading of the json file
         } catch (IOException iox) {
@@ -71,6 +78,7 @@ public class KochManager {
 
     /**
      * Buffered deserialization
+     *
      * @param level The level that will be deserialized
      * @return Array of edges found
      */
@@ -85,7 +93,8 @@ public class KochManager {
             while ((line = bufferedReader.readLine()) != null)
                 sb.append(line);
 
-            Type listType = new TypeToken<LinkedList<Edge>>(){}.getType();
+            Type listType = new TypeToken<LinkedList<Edge>>() {
+            }.getType();
             System.out.println(sb.toString());
             data = gson.fromJson(sb.toString(), listType);
         } catch (IOException iox) {
@@ -96,6 +105,7 @@ public class KochManager {
 
     /**
      * Magic that will read the bin files
+     *
      * @return The list of edges inside the bin files
      */
     private LinkedList<Edge> readEdgeStream(int level) {
@@ -112,6 +122,7 @@ public class KochManager {
 
     /**
      * Magic that will read the bin files with a buffer
+     *
      * @return The list of edges inside the bin files
      */
     private LinkedList<Edge> bufferedReadEdgeStream(int level) {
@@ -128,14 +139,42 @@ public class KochManager {
 
     /**
      * Converts the custom edge objects (to allow for color serialization) back to Edge objects
+     *
      * @return
      */
     private LinkedList<Edge> convertEdgeList(LinkedList<Edge2> edges) {
-        LinkedList<Edge> returnvalue = null;
-        for(Edge2 e : edges) {
+        LinkedList<Edge> returnvalue = new LinkedList<>();
+        for (Edge2 e : edges) {
             returnvalue.add(new Edge(e.X1, e.Y1, e.X2, e.Y2, e.deserializeColor()));
         }
         return returnvalue;
+    }
+
+    //https://simplesassim.wordpress.com/2014/06/18/how-to-read-an-object-from-a-memory-mapped-file-with-oracle-jdk/
+    private LinkedList<Edge> bufferedRandomAccessFile(int level) {
+        try {
+            final RandomAccessFile f = new RandomAccessFile("fractals/" + level + "rnd.bin", "r");
+            final FileChannel fc = f.getChannel();
+            final MappedByteBuffer map = fc.map(READ_ONLY, 0, f.length());
+
+            final byte[] buf = new byte[(int)f.length()];
+
+            map.get(buf);
+
+            final ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(buf));
+
+            LinkedList<Edge2> temp = (LinkedList<Edge2>) ois.readObject();
+            LinkedList<Edge> edges = convertEdgeList(temp);
+
+            ois.close();
+            f.close();
+            return edges;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void drawEdges() {
@@ -144,7 +183,7 @@ public class KochManager {
 
         time.setBegin("Edges are being drawn...");
 
-        for (Edge e:edges) {
+        for (Edge e : edges) {
             application.drawEdge(e, e.color);
         }
 
