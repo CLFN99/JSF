@@ -45,7 +45,7 @@ private static List<Edge> edges = new ArrayList<Edge>();
             fractal.generateBottomEdge();
             fractal.generateLeftEdge();
             fractal.generateRightEdge();
-
+            long startTime = System.currentTimeMillis();
             try {
                 if (edges.size() == fractal.getNrOfEdges()) {
                     FileWriter writer = new FileWriter(level + ".json");
@@ -56,7 +56,9 @@ private static List<Edge> edges = new ArrayList<Edge>();
 
                     writer.flush();
                     writer.close();
-                    System.out.println("done!");
+                    long endTime = System.currentTimeMillis();
+                    long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+                    System.out.println(duration);
                 }
 
             } catch (IOException e) {

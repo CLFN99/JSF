@@ -57,6 +57,8 @@ public class BinWithBuffer extends Application implements Observer {
         fractal.generateBottomEdge();
         fractal.generateLeftEdge();
         fractal.generateRightEdge();
+        long startTime = System.currentTimeMillis();
+
         try {
             if (edges.size() == fractal.getNrOfEdges()) {
                 FileOutputStream fos = new FileOutputStream(level + ".bin");
@@ -64,7 +66,9 @@ public class BinWithBuffer extends Application implements Observer {
                 ObjectOutputStream out = new ObjectOutputStream(buffer);
                 out.writeObject(serializableEdges);
                 out.close();
-                System.out.println("done!");
+                long endTime = System.currentTimeMillis();
+                long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+                System.out.println(duration);
             }
 
         } catch (FileNotFoundException e) {
