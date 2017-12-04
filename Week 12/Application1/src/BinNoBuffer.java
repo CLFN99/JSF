@@ -39,6 +39,8 @@ public class BinNoBuffer extends Application implements Observer {
             e.printStackTrace();
         }
 
+        long startTime = System.currentTimeMillis();
+
         //generate edges
         if(level != 0){
             fractal.setLevel(level);
@@ -50,7 +52,9 @@ public class BinNoBuffer extends Application implements Observer {
                     FileOutputStream fos = new FileOutputStream(level + ".bin");
                     ObjectOutputStream out = new ObjectOutputStream(fos);
                     out.writeObject(serializableEdges);
-                    System.out.println("done!");
+                    long endTime = System.currentTimeMillis();
+                    long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+                    System.out.println(duration);
                 }
 
             } catch (FileNotFoundException e) {
