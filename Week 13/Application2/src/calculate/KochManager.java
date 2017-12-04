@@ -44,11 +44,17 @@ public class KochManager {
 
     public synchronized void changeLevel(int nxt) {
         //Should try to load the file of the given level into the edges list.
-        //edges = deserialize(nxt);
-        //edges = bufferedDezerialize(nxt);
-        //edges = readEdgeStream(nxt);
-        //edges = bufferedReadEdgeStream(nxt);
-
+        System.out.println("---JSON Serialization---");
+        System.out.println("---Unbuffered---");
+        edges = deserialize(nxt);
+        System.out.println("--Buffered---");
+        edges = bufferedDezerialize(nxt);
+        System.out.println("---Bin deserialization---");
+        System.out.println("---Unbuffered---");
+        edges = readEdgeStream(nxt);
+        System.out.println("---Buffered---");
+        edges = bufferedReadEdgeStream(nxt);
+        System.out.println("---RandomAccessStream---");
         edges = bufferedRandomAccessFile(nxt);
         if (edges.size() > 0)
             drawEdges();
@@ -67,10 +73,12 @@ public class KochManager {
         List<Edge> data = new LinkedList<>();
         try {
             File edges = new File("fractals/" + level + ".json"); //The json file that should be read
-            Type listType = new TypeToken<LinkedList<Edge>>() {
-            }.getType(); //The type of list that the json array is in
+            Type listType = new TypeToken<LinkedList<Edge>>() {}.getType(); //The type of list that the json array is in
             JsonReader reader = new JsonReader(new FileReader(edges)); //The reader that should be used
+            time.setBegin("Reading JSON");
             data = gson.fromJson(reader, listType); //The actual reading of the json file
+            time.setEnd("Done reading and deserializing JSON");
+            System.out.println(time.toString());
         } catch (IOException iox) {
             iox.printStackTrace();
         }
@@ -91,13 +99,17 @@ public class KochManager {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("fractals/" + level + ".json"));
             String line;
             StringBuilder sb = new StringBuilder();
+            time.setBegin("Buffered reading JSON");
             while ((line = bufferedReader.readLine()) != null)
                 sb.append(line);
-
+            time.setEndBegin("Done reading JSON, starting deserialization");
             Type listType = new TypeToken<LinkedList<Edge>>() {
             }.getType();
-            System.out.println(sb.toString());
+            //System.out.println(sb.toString());
             data = gson.fromJson(sb.toString(), listType);
+            time.setEnd("Done deserializing");
+            System.out.println(time.toString());
+            time.init();
         } catch (IOException iox) {
             iox.printStackTrace();
         }
@@ -112,9 +124,12 @@ public class KochManager {
     private LinkedList<Edge> readEdgeStream(int level) {
         LinkedList<Edge> returnvalue = null;
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("fractals/" + level + ".bin"))) {
-
+            time.setBegin("Reading bin");
             returnvalue = convertEdgeList((LinkedList<Edge2>) in.readObject());
-
+            time.setEnd("Completed reading and converting bin");
+            in.close();
+            System.out.println(time.toString());
+            time.init();
         } catch (IOException | ClassNotFoundException exception) {
             exception.printStackTrace();
         }
@@ -129,9 +144,12 @@ public class KochManager {
     private LinkedList<Edge> bufferedReadEdgeStream(int level) {
         LinkedList<Edge> returnvalue = null;
         try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("fractals/" + level + ".bin")))) {
-
+            time.setBegin("Buffered reading bin");
             returnvalue = convertEdgeList((LinkedList<Edge2>) in.readObject());
-
+            time.setEnd("Completed reading and converting bin");
+            in.close();
+            System.out.println(time.toString());
+            time.init();
         } catch (IOException | ClassNotFoundException exception) {
             exception.printStackTrace();
         }
@@ -164,8 +182,9 @@ public class KochManager {
             map.get(buf);
 
             final ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(buf));
-
+            time.setBegin("Reading randomaccessfile");
             LinkedList<Edge2> temp = (LinkedList<Edge2>) ois.readObject();
+            time.setEnd("Done reading randomaccessfile");
             LinkedList<Edge> edges = convertEdgeList(temp);
 
             ois.close();
