@@ -1,6 +1,7 @@
 package depreciated;
 
 import calculate.Edge;
+import calculate.KochFractal;
 import calculate.KochManager;
 
 import java.util.LinkedList;

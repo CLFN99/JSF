@@ -1,6 +1,7 @@
 package depreciated;
 
 import calculate.Edge;
+import calculate.KochFractal;
 import javafx.concurrent.Task;
 
 import java.util.LinkedList;
