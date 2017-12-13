@@ -1,8 +1,6 @@
-package com.magiclegend;
-
 import java.io.File;
 
-public class Main {
+public class temp {
     public static void main(String[] args) {
         System.out.println("Hi!");
         File f1 = new File("oldname.txt");

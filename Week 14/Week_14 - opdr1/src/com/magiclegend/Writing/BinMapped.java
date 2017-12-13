@@ -90,7 +90,7 @@ public class BinMapped extends Application implements Observer {
                     File f2 = new File("newname.txt");
                     boolean b = f1.renameTo(f2);
                     System.out.println(b);
-                    System.exit(0);
+                    //System.exit(0);
                 }
             }
             catch(IOException ioe){

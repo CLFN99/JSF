@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
@@ -18,6 +19,7 @@ import java.util.Observer;
 public class BinMapped extends Application implements Observer {
     private List<Edge> edges = new LinkedList<>();
     private List<Edge2> serializableEdges = new LinkedList<>();
+    private FileLock exclusiveLock = null;
 
     public static void main(String[] args) {
         launch(args);
@@ -68,7 +70,26 @@ public class BinMapped extends Application implements Observer {
                     FileChannel fc = raFile.getChannel();
                     buffer = fc.map(FileChannel.MapMode.READ_WRITE, 0 , bytes.length);
 
-                    buffer.put(bytes);
+                    //File structure:
+                    //      0 .. 3 :        4 bytes int with level - Reader can find maxvalue with the formula (4^level * 3)
+                    //      4 .. 7 :        4 bytes int with status - Current writing location; amount of edges that have been written
+                    //      8 .. * :        4 bytes int with value - The edges themselves
+                    //Edge structure:
+                    //      0 .. 7 :        8 bytes long with X1
+                    //      8 .. 15 :       8 bytes long with Y1
+                    //      16 .. 23 :      8 bytes long with X2
+                    //      24 .. 31 :      8 bytes long with Y2
+                    //      32 .. 39 :      8 bytes long with hue
+                    //      --- 40 bytes per edge ---
+
+                    //      0 .. 7 :        Header
+                    //      8 .. 39 :       Edge 1
+                    //      40 .. 79 :      Edge 2
+                    //      80 .. 119 :     Edge 3
+                    //      120 .. 159 :    Edge 4
+                    //      160 .. 199 :    Edge 5
+
+                    //buffer.put(bytes);
                     raFile.close();
                     oos.close();
 

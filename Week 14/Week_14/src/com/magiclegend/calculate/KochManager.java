@@ -42,18 +42,21 @@ public class KochManager {
 
     public synchronized void changeLevel(int nxt) {
         //Should try to load the file of the given level into the edges list.
-        System.out.println("---JSON Serialization---");
-        System.out.println("---Unbuffered---");
-        edges = deserialize(nxt);
-        System.out.println("--Buffered---");
-        edges = bufferedDezerialize(nxt);
-        System.out.println("---Bin deserialization---");
-        System.out.println("---Unbuffered---");
-        edges = readEdgeStream(nxt);
-        System.out.println("---Buffered---");
-        edges = bufferedReadEdgeStream(nxt);
-        System.out.println("---RandomAccessStream---");
-        edges = bufferedRandomAccessFile(nxt);
+//        System.out.println("---JSON Serialization---");
+//        System.out.println("---Unbuffered---");
+//        edges = deserialize(nxt);
+//        System.out.println("--Buffered---");
+//        edges = bufferedDezerialize(nxt);
+//        System.out.println("---Bin deserialization---");
+//        System.out.println("---Unbuffered---");
+//        edges = readEdgeStream(nxt);
+//        System.out.println("---Buffered---");
+//        edges = bufferedReadEdgeStream(nxt);
+//        System.out.println("---RandomAccessStream---");
+//        edges = bufferedRandomAccessFile(nxt);
+
+        //Retrieval of the edges should be done here
+
         if (edges.size() > 0)
             drawEdges();
         else
