@@ -1,8 +1,8 @@
 package com.magiclegend.Writing;
 
-import calculate.Edge;
-import calculate.Edge2;
-import calculate.KochFractal;
+import com.magiclegend.calculate.Edge;
+import com.magiclegend.calculate.Edge2;
+import com.magiclegend.calculate.KochFractal;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

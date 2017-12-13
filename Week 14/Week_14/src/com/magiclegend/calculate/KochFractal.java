@@ -5,8 +5,6 @@
 package com.magiclegend.calculate;
 
 import java.util.Observable;
-
-import calculate.Edge;
 import javafx.scene.paint.Color;
 
 /**

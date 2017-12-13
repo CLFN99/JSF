@@ -64,7 +64,7 @@ public class BinMapped extends Application implements Observer {
                     oos.writeObject(serializableEdges);
                     byte[] bytes = bos.toByteArray();
 
-                    raFile = new RandomAccessFile(String.valueOf(level) + "rnd.bin", "rw");
+                    raFile = new RandomAccessFile("fractals/" + String.valueOf(level) + "rnd.bin", "rw");
                     FileChannel fc = raFile.getChannel();
                     buffer = fc.map(FileChannel.MapMode.READ_WRITE, 0 , bytes.length);
 
@@ -75,6 +75,7 @@ public class BinMapped extends Application implements Observer {
                     long endTime = System.currentTimeMillis();
                     long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
                     System.out.println(duration);
+                    System.exit(0);
                 }
             }
             catch(IOException ioe){
