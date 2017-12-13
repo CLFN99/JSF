@@ -4,6 +4,7 @@ package com.magiclegend.Writing;
 import com.magiclegend.calculate.Edge;
 import com.magiclegend.calculate.Edge2;
 import com.magiclegend.calculate.KochFractal;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -64,17 +65,31 @@ public class BinMapped extends Application implements Observer {
                     oos.writeObject(serializableEdges);
                     byte[] bytes = bos.toByteArray();
 
-                    raFile = new RandomAccessFile("fractals/" + String.valueOf(level) + "rnd.bin", "rw");
+                    raFile = new RandomAccessFile("fractals/" + String.valueOf(level) + "rnd.tmp", "rw");
                     FileChannel fc = raFile.getChannel();
                     buffer = fc.map(FileChannel.MapMode.READ_WRITE, 0 , bytes.length);
 
                     buffer.put(bytes);
+                    fc.close();
                     raFile.close();
                     oos.close();
+                    bos.close();
 
+                    //Thread.sleep(5000);
+
+                    File file = new File("fractals/" + String.valueOf(level) + "rnd.tmp");
+                    if(file.canWrite()){
+                        System.out.println("can write");
+                    }
+                    System.out.println(file.getName());
+                    System.out.println(file.renameTo(new File("fractals/" + String.valueOf(level) + "rnd.bin")));
                     long endTime = System.currentTimeMillis();
                     long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
                     System.out.println(duration);
+                    File f1 = new File("oldname.txt");
+                    File f2 = new File("newname.txt");
+                    boolean b = f1.renameTo(f2);
+                    System.out.println(b);
                     System.exit(0);
                 }
             }
