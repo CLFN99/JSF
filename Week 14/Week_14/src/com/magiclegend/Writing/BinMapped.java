@@ -20,6 +20,7 @@ public class BinMapped extends Application implements Observer {
     private List<Edge> edges = new LinkedList<>();
     private List<Edge2> serializableEdges = new LinkedList<>();
     private FileLock exclusiveLock = null;
+    private int status = 0;
 
     public static void main(String[] args) {
         launch(args);
@@ -58,6 +59,8 @@ public class BinMapped extends Application implements Observer {
 
             RandomAccessFile raFile;
             MappedByteBuffer buffer;
+            FileLock headLock;
+            FileLock edgeLock;
             try {
                 if (edges.size() == fractal.getNrOfEdges()) {
                     //convert list to byte array
@@ -66,7 +69,7 @@ public class BinMapped extends Application implements Observer {
                     oos.writeObject(serializableEdges);
                     byte[] bytes = bos.toByteArray();
 
-                    raFile = new RandomAccessFile("fractals/" + String.valueOf(level) + "rnd.bin", "rw");
+                    raFile = new RandomAccessFile("fractals/" + String.valueOf(level) + "test.bin", "rw");
                     FileChannel fc = raFile.getChannel();
                     buffer = fc.map(FileChannel.MapMode.READ_WRITE, 0 , bytes.length);
 
@@ -88,8 +91,30 @@ public class BinMapped extends Application implements Observer {
                     //      80 .. 119 :     Edge 3
                     //      120 .. 159 :    Edge 4
                     //      160 .. 199 :    Edge 5
+                    headLock = fc.lock(4,4, false);
+                    edgeLock = fc.lock(8, 10, false);
+                    buffer.position(0);
+                    buffer.put((byte)level);
+                    buffer.position(4);
+                    buffer.put((byte)status);
+                    buffer.put((byte)18);
+                    //buffer.put((byte)2);
+                    //buffer.put((byte)3);
+                   // buffer.put((byte)4);
+                   // buffer.put((byte)5);
+                    for(Edge2 e : serializableEdges){
 
-                    //buffer.put(bytes);
+                        buffer.putDouble(e.X1);
+                        buffer.putDouble(e.Y1);
+                        buffer.putDouble(e.X2);
+                        buffer.putDouble(e.Y2);
+                        buffer.putDouble(e.hue);
+
+
+                        headLock.release();
+                        edgeLock.release();
+                    }
+
                     raFile.close();
                     oos.close();
 
@@ -103,5 +128,9 @@ public class BinMapped extends Application implements Observer {
                 System.out.println(ioe);
             }
         }
+    }
+
+    private void updateStatus(){
+
     }
 }
