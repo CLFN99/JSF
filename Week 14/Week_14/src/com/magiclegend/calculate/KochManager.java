@@ -6,11 +6,13 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.magiclegend.jsf31kochfractalfx.JSF31KochFractalFX;
 import com.magiclegend.timeutil.TimeStamp;
+import javafx.scene.paint.Color;
 
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -42,6 +44,11 @@ public class KochManager {
 
     public synchronized void changeLevel(int nxt) {
         //Should try to load the file of the given level into the edges list.
+        try {
+            edges = deserializeMappedBin(nxt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 //        System.out.println("---JSON Serialization---");
 //        System.out.println("---Unbuffered---");
 //        edges = deserialize(nxt);
@@ -62,6 +69,108 @@ public class KochManager {
         else
             System.out.println("No edges found");
     }
+
+    /**
+     * https://gregstoll.dyndns.org/~gregstoll/floattohex/
+     *
+     * @param level
+     * @return
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    private List<Edge> deserializeMappedBin(int level) throws IOException, InterruptedException {
+        List<Edge> data = new LinkedList<>();
+        int LAST_READ = 0;
+        long LENGTH = new File("fractals/" + level + ".bin").length();
+        boolean newEdge = false;
+
+        Random r = new Random();
+        FileLock exclusiveLock = null;
+        FileLock exclusiveEdgeLock = null;
+        try {
+            RandomAccessFile raf = new RandomAccessFile("fractals/" + level + ".bin", "rw");
+            FileChannel ch = raf.getChannel();
+
+            MappedByteBuffer out = ch.map(FileChannel.MapMode.READ_WRITE, 0, LENGTH);
+
+            boolean finished = false;
+            while (!finished) {
+
+                /**
+                 * Lock for the reading of the header
+                 */
+                exclusiveLock = ch.lock(0, 8, false);
+
+                int lvl = out.getInt(0);
+                int status = out.getInt(4);
+
+                Thread.sleep(r.nextInt(10));
+                // release the lock
+                exclusiveLock.release();
+
+                System.out.println("Level: " + lvl);
+                System.out.println("Status: " + status);
+                System.out.println("Last_Read: " + LAST_READ);
+
+                if (status >= LAST_READ) {
+                    newEdge = true;
+                }
+
+                if (LAST_READ >= Math.pow(4, lvl - 1) * 3) {
+                    //We are done reading, all the edges should've been found by now.
+                    System.out.println("Done reading");
+                    finished = true;
+                }
+
+
+                /**
+                 * Lock for reading the edge
+                 */
+
+                if (newEdge) {
+                    int currEdge;
+                    if (LAST_READ > 1) {
+                        currEdge = LAST_READ * 5;
+                    } else {
+                        currEdge = 8;
+                    }
+                    exclusiveEdgeLock = ch.lock(currEdge, 40, false);
+                    double x1 = out.getDouble(currEdge);
+                    double y1 = out.getDouble(currEdge + 8);
+                    double x2 = out.getDouble(currEdge + 16);
+                    double y2 = out.getDouble(currEdge + 24);
+                    double hue = out.getDouble(currEdge + 32);
+
+                    Thread.sleep(r.nextInt(10));
+                    // release the lock
+                    exclusiveEdgeLock.release();
+
+                    Edge e = new Edge(x1, y1, x2, y2, Color.hsb(hue, 1, 1));
+                    System.out.println(x1 + " : " + y1 + " - " + x2 + " : " + y2 + " | " + hue);
+                    data.add(e);
+                    System.out.println("Added edge");
+                    LAST_READ++;
+                }
+
+            }
+        } catch (IndexOutOfBoundsException ioobe) {
+            ioobe.printStackTrace();
+        } catch (FileNotFoundException fnfe) {
+            fnfe.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (exclusiveLock != null) {
+                exclusiveLock.release();
+            }
+            if (exclusiveEdgeLock != null) {
+                exclusiveEdgeLock.release();
+            }
+        }
+
+        return data;
+    }
+
 
     /**
      * Unbuffered deserialization
