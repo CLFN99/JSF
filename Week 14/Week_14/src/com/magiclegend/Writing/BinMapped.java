@@ -96,40 +96,41 @@ public class BinMapped extends Application implements Observer {
                     status = 0;
                     //buffer.putInt(0, 2);
                     //buffer.putInt(4, status);
-                    edgeLock = fc.lock(8, 10, false);
+//                    edgeLock = fc.lock(8, 10, false);
+////                    buffer.position(8);
+////                    buffer.putDouble(serializableEdges.get(0).X1);
+////                    buffer.putDouble(serializableEdges.get(0).Y1);
+////                    buffer.putDouble(serializableEdges.get(0).X2);
+////                    buffer.putDouble(serializableEdges.get(0).Y2);
+////                    buffer.putDouble(serializableEdges.get(0).hue);
+////                    System.out.println(serializableEdges.get(0).X1 );
+////                    System.out.println(serializableEdges.get(0).Y1 );
+////                    System.out.println(serializableEdges.get(0).X2 );
+////                    System.out.println(serializableEdges.get(0).Y2 );
+//
+//                    headLock = fc.lock(4,4, false);
+//                    buffer.putInt(0, level);
+//                    buffer.putInt(4, status);
+//                    edgeLock.release();
+//                    headLock.release();
+
                     buffer.position(8);
-                    buffer.putDouble(serializableEdges.get(0).X1);
-                    buffer.putDouble(serializableEdges.get(0).Y1);
-                    buffer.putDouble(serializableEdges.get(0).X2);
-                    buffer.putDouble(serializableEdges.get(0).Y2);
-                    buffer.putDouble(serializableEdges.get(0).hue);
-                    System.out.println(serializableEdges.get(0).X1 );
-                    System.out.println(serializableEdges.get(0).Y1 );
-                    System.out.println(serializableEdges.get(0).X2 );
-                    System.out.println(serializableEdges.get(0).Y2 );
+                    for(Edge2 e : serializableEdges){
+                        edgeLock = fc.lock(8, 10, false);
+                        buffer.putDouble(e.X1);
+                        buffer.putDouble(e.Y1);
+                        buffer.putDouble(e.X2);
+                        buffer.putDouble(e.Y2);
+                        buffer.putDouble(e.hue);
 
-                    headLock = fc.lock(4,4, false);
-                    buffer.putInt(0, level);
-                    buffer.putInt(4, status);
-                    edgeLock.release();
-                    headLock.release();
+                        headLock = fc.lock(4,4, false);
+                        buffer.putInt(0, level);
+                        buffer.putInt(4, status);
+                        edgeLock.release();
+                        headLock.release();
 
-//                    for(Edge2 e : serializableEdges){
-//                        edgeLock = fc.lock(8, 10, false);
-//                        buffer.putDouble(e.X1);
-//                        buffer.putDouble(e.Y1);
-//                        buffer.putDouble(e.X2);
-//                        buffer.putDouble(e.Y2);
-//                        buffer.putDouble(e.hue);
-//
-//                        headLock = fc.lock(4,4, false);
-//                        buffer.putInt(0, level);
-//                        buffer.putInt(4, status);
-//                        edgeLock.release();
-//                        headLock.release();
-//
-//                        status++;
-//                    }
+                        status++;
+                    }
                     bos.close();
                     raFile.close();
                     oos.close();
