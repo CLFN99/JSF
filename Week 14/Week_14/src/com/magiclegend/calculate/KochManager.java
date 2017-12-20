@@ -13,6 +13,9 @@ import java.lang.reflect.Type;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -27,6 +30,7 @@ public class KochManager {
     private List<String> calcTimes;
     private final ExecutorService pool = Executors.newFixedThreadPool(3);
     //private CalcTask task;
+    private static int TRIES = 0;
 
     public KochManager(JSF31KochFractalFX application) {
         this.application = application;
@@ -81,14 +85,19 @@ public class KochManager {
     private List<Edge> deserializeMappedBin(int level) throws IOException, InterruptedException {
         List<Edge> data = new LinkedList<>();
         int LAST_READ = 0;
-        long LENGTH = new File("fractals/" + level + ".bin").length();
+        Path path = Paths.get("fractals/" + level + "bos.bin");
+        long LENGTH = new File(String.valueOf(path)).length();
         boolean newEdge = false;
 
         Random r = new Random();
         FileLock exclusiveLock = null;
         FileLock exclusiveEdgeLock = null;
         try {
-            RandomAccessFile raf = new RandomAccessFile("fractals/" + level + ".bin", "rw");
+            File f = new File("fractals/" + level + "bos.bin");
+            if (!f.isFile() || f.length() == 0) {
+                throw new FileNotFoundException();
+            }
+            RandomAccessFile raf = new RandomAccessFile("fractals/" + level + "bos.bin", "rw");
             FileChannel ch = raf.getChannel();
 
             MappedByteBuffer out = ch.map(FileChannel.MapMode.READ_WRITE, 0, LENGTH);
@@ -112,11 +121,11 @@ public class KochManager {
                 System.out.println("Status: " + status);
                 System.out.println("Last_Read: " + LAST_READ);
 
-                if (status >= LAST_READ) {
+                if (LAST_READ <= status || LAST_READ == status + 1) {
                     newEdge = true;
                 }
 
-                if (LAST_READ >= Math.pow(4, lvl - 1) * 3) {
+                if (LAST_READ > Math.pow(4, lvl - 1) * 3) {
                     //We are done reading, all the edges should've been found by now.
                     System.out.println("Done reading");
                     finished = true;
@@ -130,7 +139,7 @@ public class KochManager {
                 if (newEdge) {
                     int currEdge;
                     if (LAST_READ > 1) {
-                        currEdge = LAST_READ * 5;
+                        currEdge = (LAST_READ - 2) * 40 + 8;
                     } else {
                         currEdge = 8;
                     }
@@ -150,6 +159,7 @@ public class KochManager {
                     data.add(e);
                     System.out.println("Added edge");
                     LAST_READ++;
+                    newEdge = false;
                 }
 
             }
@@ -157,6 +167,15 @@ public class KochManager {
             ioobe.printStackTrace();
         } catch (FileNotFoundException fnfe) {
             fnfe.printStackTrace();
+            if (TRIES < 20) {
+                TRIES++;
+                System.out.println("File not found, trying again in 0.5 sec...");
+                Thread.sleep(500);
+                return deserializeMappedBin(level);
+            } else {
+                System.out.println("Tried " + TRIES + " times, no result... Quitting!");
+                System.exit(0);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

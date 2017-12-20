@@ -69,7 +69,7 @@ public class BinMapped extends Application implements Observer {
                     oos.writeObject(serializableEdges);
                     byte[] bytes = bos.toByteArray();
 
-                    raFile = new RandomAccessFile("fractals/" + String.valueOf(level) + ".bin", "rw");
+                    raFile = new RandomAccessFile("fractals/" + String.valueOf(level) + "bos.bin", "rw");
                     FileChannel fc = raFile.getChannel();
                     buffer = fc.map(FileChannel.MapMode.READ_WRITE, 0, bytes.length);
 
@@ -116,7 +116,7 @@ public class BinMapped extends Application implements Observer {
                     int edgeLocation = 8;
 
                     for (Edge2 e : serializableEdges) {
-                        edgeLock = fc.lock(edgeLocation, 10, false);
+                        edgeLock = fc.lock(edgeLocation, 40, false);
 
                         buffer.putDouble(edgeLocation, e.X1);
                         buffer.putDouble(edgeLocation + 8, e.Y1);
@@ -124,17 +124,21 @@ public class BinMapped extends Application implements Observer {
                         buffer.putDouble(edgeLocation + 24, e.Y2);
                         buffer.putDouble(edgeLocation + 32, e.hue);
                         edgeLock.release();
+
                         System.out.println(e.X1);
                         System.out.println(e.Y1);
                         System.out.println(e.X2);
                         System.out.println(e.Y2);
                         System.out.println(e.hue);
                         System.out.println("------");
-                        headLock = fc.lock(4, 4, false);
+
+                        headLock = fc.lock(4, 8, false);
                         buffer.putInt(0, level);
                         buffer.putInt(4, status);
-
                         headLock.release();
+
+                        Thread.sleep(1000); //Artificial delay to test the locks
+
                         edgeLocation += 40;
                         status++;
                     }
