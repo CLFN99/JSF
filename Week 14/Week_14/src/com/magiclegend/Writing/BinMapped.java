@@ -97,11 +97,16 @@ public class BinMapped extends Application implements Observer {
                     //buffer.putInt(0, 2);
                     //buffer.putInt(4, status);
                     edgeLock = fc.lock(8, 10, false);
+                    buffer.position(8);
                     buffer.putDouble(serializableEdges.get(0).X1);
                     buffer.putDouble(serializableEdges.get(0).Y1);
                     buffer.putDouble(serializableEdges.get(0).X2);
                     buffer.putDouble(serializableEdges.get(0).Y2);
                     buffer.putDouble(serializableEdges.get(0).hue);
+                    System.out.println(serializableEdges.get(0).X1 );
+                    System.out.println(serializableEdges.get(0).Y1 );
+                    System.out.println(serializableEdges.get(0).X2 );
+                    System.out.println(serializableEdges.get(0).Y2 );
 
                     headLock = fc.lock(4,4, false);
                     buffer.putInt(0, level);
