@@ -96,25 +96,36 @@ public class BinMapped extends Application implements Observer {
                     status = 0;
                     //buffer.putInt(0, 2);
                     //buffer.putInt(4, status);
+                    edgeLock = fc.lock(8, 10, false);
+                    buffer.putDouble(serializableEdges.get(0).X1);
+                    buffer.putDouble(serializableEdges.get(0).Y1);
+                    buffer.putDouble(serializableEdges.get(0).X2);
+                    buffer.putDouble(serializableEdges.get(0).Y2);
+                    buffer.putDouble(serializableEdges.get(0).hue);
 
-                    for(Edge2 e : serializableEdges){
-                        edgeLock = fc.lock(8, 10, false);
-                        buffer.putDouble(e.X1);
-                        buffer.putDouble(e.Y1);
-                        buffer.putDouble(e.X2);
-                        buffer.putDouble(e.Y2);
-                        buffer.putDouble(e.hue);
+                    headLock = fc.lock(4,4, false);
+                    buffer.putInt(0, level);
+                    buffer.putInt(4, status);
+                    edgeLock.release();
+                    headLock.release();
 
-                        headLock = fc.lock(4,4, false);
-                        buffer.putInt(0, level);
-                        buffer.putInt(4, status);
-                        edgeLock.release();
-                        headLock.release();
-
-                        status++;
-                    }
-                    bos.close()
-                    ;
+//                    for(Edge2 e : serializableEdges){
+//                        edgeLock = fc.lock(8, 10, false);
+//                        buffer.putDouble(e.X1);
+//                        buffer.putDouble(e.Y1);
+//                        buffer.putDouble(e.X2);
+//                        buffer.putDouble(e.Y2);
+//                        buffer.putDouble(e.hue);
+//
+//                        headLock = fc.lock(4,4, false);
+//                        buffer.putInt(0, level);
+//                        buffer.putInt(4, status);
+//                        edgeLock.release();
+//                        headLock.release();
+//
+//                        status++;
+//                    }
+                    bos.close();
                     raFile.close();
                     oos.close();
 
