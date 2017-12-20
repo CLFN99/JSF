@@ -94,8 +94,8 @@ public class BinMapped extends Application implements Observer {
 
 
                     status = 0;
-                    buffer.putInt(0, level);
-                    buffer.putInt(4, status);
+                    //buffer.putInt(0, 2);
+                    //buffer.putInt(4, status);
 
                     for(Edge2 e : serializableEdges){
                         edgeLock = fc.lock(8, 10, false);
@@ -106,6 +106,7 @@ public class BinMapped extends Application implements Observer {
                         buffer.putDouble(e.hue);
 
                         headLock = fc.lock(4,4, false);
+                        buffer.putInt(0, level);
                         buffer.putInt(4, status);
                         edgeLock.release();
                         headLock.release();
