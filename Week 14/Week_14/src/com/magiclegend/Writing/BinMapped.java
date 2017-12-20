@@ -30,7 +30,7 @@ public class BinMapped extends Application implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         edges.add((Edge) arg);
-        serializableEdges.add(new Edge2((Edge)arg));
+        serializableEdges.add(new Edge2((Edge) arg));
     }
 
     @Override
@@ -71,7 +71,7 @@ public class BinMapped extends Application implements Observer {
 
                     raFile = new RandomAccessFile("fractals/" + String.valueOf(level) + ".bin", "rw");
                     FileChannel fc = raFile.getChannel();
-                    buffer = fc.map(FileChannel.MapMode.READ_WRITE, 0 , bytes.length);
+                    buffer = fc.map(FileChannel.MapMode.READ_WRITE, 0, bytes.length);
 
                     //File structure:
                     //      0 .. 3 :        4 bytes int with level - Reader can find maxvalue with the formula (4^level * 3)
@@ -113,22 +113,29 @@ public class BinMapped extends Application implements Observer {
 //                    buffer.putInt(4, status);
 //                    edgeLock.release();
 //                    headLock.release();
+                    int edgeLocation = 8;
 
-                    buffer.position(8);
-                    for(Edge2 e : serializableEdges){
-                        edgeLock = fc.lock(8, 10, false);
-                        buffer.putDouble(e.X1);
-                        buffer.putDouble(e.Y1);
-                        buffer.putDouble(e.X2);
-                        buffer.putDouble(e.Y2);
-                        buffer.putDouble(e.hue);
+                    for (Edge2 e : serializableEdges) {
+                        edgeLock = fc.lock(edgeLocation, 10, false);
 
-                        headLock = fc.lock(4,4, false);
+                        buffer.putDouble(edgeLocation, e.X1);
+                        buffer.putDouble(edgeLocation + 8, e.Y1);
+                        buffer.putDouble(edgeLocation + 16, e.X2);
+                        buffer.putDouble(edgeLocation + 24, e.Y2);
+                        buffer.putDouble(edgeLocation + 32, e.hue);
+                        edgeLock.release();
+                        System.out.println(e.X1);
+                        System.out.println(e.Y1);
+                        System.out.println(e.X2);
+                        System.out.println(e.Y2);
+                        System.out.println(e.hue);
+                        System.out.println("------");
+                        headLock = fc.lock(4, 4, false);
                         buffer.putInt(0, level);
                         buffer.putInt(4, status);
-                        edgeLock.release();
-                        headLock.release();
 
+                        headLock.release();
+                        edgeLocation += 40;
                         status++;
                     }
                     bos.close();
@@ -137,14 +144,13 @@ public class BinMapped extends Application implements Observer {
 
                     System.exit(0);
                 }
-            }
-            catch(IOException ioe){
+            } catch (IOException ioe) {
                 System.out.println(ioe);
             }
         }
     }
 
-    private void updateStatus(){
+    private void updateStatus() {
 
     }
 }
