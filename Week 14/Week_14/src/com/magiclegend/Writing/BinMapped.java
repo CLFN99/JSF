@@ -69,7 +69,7 @@ public class BinMapped extends Application implements Observer {
                     oos.writeObject(serializableEdges);
                     byte[] bytes = bos.toByteArray();
 
-                    raFile = new RandomAccessFile("fractals/" + String.valueOf(level) + "test.bin", "rw");
+                    raFile = new RandomAccessFile("fractals/" + String.valueOf(level) + ".bin", "rw");
                     FileChannel fc = raFile.getChannel();
                     buffer = fc.map(FileChannel.MapMode.READ_WRITE, 0 , bytes.length);
 
@@ -91,36 +91,32 @@ public class BinMapped extends Application implements Observer {
                     //      80 .. 119 :     Edge 3
                     //      120 .. 159 :    Edge 4
                     //      160 .. 199 :    Edge 5
-                    headLock = fc.lock(4,4, false);
-                    edgeLock = fc.lock(8, 10, false);
-                    buffer.position(0);
-                    buffer.put((byte)level);
-                    buffer.position(4);
-                    buffer.put((byte)status);
-                    buffer.put((byte)18);
-                    //buffer.put((byte)2);
-                    //buffer.put((byte)3);
-                   // buffer.put((byte)4);
-                   // buffer.put((byte)5);
-                    for(Edge2 e : serializableEdges){
 
+
+                    status = 0;
+                    buffer.putInt(0, level);
+                    buffer.putInt(4, status);
+
+                    for(Edge2 e : serializableEdges){
+                        edgeLock = fc.lock(8, 10, false);
                         buffer.putDouble(e.X1);
                         buffer.putDouble(e.Y1);
                         buffer.putDouble(e.X2);
                         buffer.putDouble(e.Y2);
                         buffer.putDouble(e.hue);
 
-
-                        headLock.release();
+                        headLock = fc.lock(4,4, false);
+                        buffer.putInt(4, status);
                         edgeLock.release();
-                    }
+                        headLock.release();
 
+                        status++;
+                    }
+                    bos.close()
+                    ;
                     raFile.close();
                     oos.close();
 
-                    long endTime = System.currentTimeMillis();
-                    long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-                    System.out.println(duration);
                     System.exit(0);
                 }
             }

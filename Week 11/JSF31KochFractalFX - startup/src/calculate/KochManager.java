@@ -42,14 +42,29 @@ public class KochManager {
 
         time.setBegin("Edges are being generated..");
         pool.submit(createTask(KochType.LEFT));
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         pool.submit(createTask(KochType.RIGHT));
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         pool.submit(createTask(KochType.BOTTOM));
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         time.setEnd("Fractal generation done!");
         application.requestDrawEdges();
     }
 
-    public void drawEdges() {
+    public void drawEdges()  {
 
         application.clearKochPanel();
 
@@ -57,6 +72,11 @@ public class KochManager {
 
         for (Edge e:edges) {
             application.drawEdge(e, e.color);
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
         }
 
         time.setEnd("Fractal drawing done!");
